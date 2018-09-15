@@ -37,15 +37,18 @@ public class Conversation {
     }
 
     private String[] get_text() throws IOException {
-        File f = new File("C:\\Users\\user\\Desktop\\Учёба\\bot\\text.txt");
+        File f = new File("text.txt");
         char[] c = new char[(int) f.length()];
         Reader reader = new InputStreamReader(new FileInputStream(f), "UTF-8");
         reader.read(c);
         reader.close();
         String str = new String(c);
-        return str.split("\r\n");
+        return str.split("[\n\r]");
     }
 
     public void start() {
+    	System.out.print(key_data.get("ПРИВЕТСТВИЕ"));
+    	System.out.print(key_data.get("СПРАВКА"));
+    	System.out.print(key_data.get("ПРЕДЛОЖЕНИЕ ПОИГРАТЬ"));
     }
 }
