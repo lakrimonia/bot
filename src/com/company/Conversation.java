@@ -4,18 +4,18 @@ import java.io.*;
 import java.util.HashMap;
 
 public class Conversation {
-    private HashMap<String, String> key_data; //Basic background information
+    private HashMap<String, String> topic_content; //Basic background information
     private HashMap<String, String> question_answer; 
 
     public Conversation() throws IOException {
-        this.key_data = new HashMap<>();
-        this.key_data.put("ПРИВЕТСТВИЕ", null);
-        this.key_data.put("СПРАВКА", null);
-        this.key_data.put("ПРЕДЛОЖЕНИЕ ПОИГРАТЬ", null);
+        topic_content = new HashMap<>();
+        topic_content.put("ПРИВЕТСТВИЕ", null);
+        topic_content.put("СПРАВКА", null);
+        topic_content.put("ПРЕДЛОЖЕНИЕ ПОИГРАТЬ", null);
         this.question_answer = new HashMap<>();
         String[] lines = get_text();
         for (int i = 0; i < lines.length - 1; i++) {
-            if (this.key_data.containsKey(lines[i])) {
+            if (this.topic_content.containsKey(lines[i])) {
                 String key = lines[i];
                 StringBuilder s_builder = new StringBuilder();
                 i++;
@@ -24,7 +24,7 @@ public class Conversation {
                     s_builder.append("\r\n");
                     i++;
                 }
-                this.key_data.put(key, s_builder.toString());
+                this.topic_content.put(key, s_builder.toString());
             } else if (lines[i].equals("ВОПРОСЫ")) {
                 i++;
                 while (!lines[i].equals("")) {
@@ -43,12 +43,12 @@ public class Conversation {
         reader.read(c);
         reader.close();
         String str = new String(c);
-        return str.split("[\n\r]");
+        return str.split("\r\n");
     }
 
     public void start() {
-    	System.out.print(key_data.get("ПРИВЕТСТВИЕ"));
-    	System.out.print(key_data.get("СПРАВКА"));
-    	System.out.print(key_data.get("ПРЕДЛОЖЕНИЕ ПОИГРАТЬ"));
+    	System.out.print(topic_content.get("ПРИВЕТСТВИЕ"));
+    	System.out.print(topic_content.get("СПРАВКА"));
+    	System.out.print(topic_content.get("ПРЕДЛОЖЕНИЕ ПОИГРАТЬ"));
     }
 }
