@@ -23,10 +23,9 @@ public class Quiz {
     public void launch() {
         quiz:
         for (String question : question_answer.keySet()) {
-            System.out.println(question);
             String right_answer = question_answer.get(question);
-            getting_an_answer:
             while (true) {
+                System.out.println(question);
                 String user_answer = scanner.nextLine().toLowerCase();
                 if (user_answer.equals(right_answer)) {
                     right_answers_count++;
