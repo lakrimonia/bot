@@ -38,6 +38,10 @@ public class Conversation {
                 System.out.println("Отличный выбор! Математика -- царица наук!");
                 Quiz quiz = new Quiz(this, question_answer, scanner);
                 quiz.launch();
+                if (continue_conversation) {
+                    System.out.println("Хочешь поиграть ещё раз? :) Выбери тему:");
+                    System.out.println("1. Математика");
+                }
                 break;
             default:
                 System.out.println("Извини, я плохо понял тебя. Так что ты выбираешь?");
@@ -50,5 +54,7 @@ public class Conversation {
         System.out.println("Пока! Жду нашей встречи!");
     }
 
-    public void show_help(){ System.out.println(topic_content.get("СПРАВКА")); }
+    public void show_help() {
+        System.out.println(topic_content.get("СПРАВКА"));
+    }
 }
