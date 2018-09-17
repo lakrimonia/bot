@@ -12,6 +12,8 @@ public class Bot {
         topic_content.put("ПРИВЕТСТВИЕ", null);
         topic_content.put("СПРАВКА", null);
         topic_content.put("ПРЕДЛОЖЕНИЕ ПОИГРАТЬ", null);
+        topic_content.put("НЕКОРРЕКТНАЯ КОМАНДА", null);
+        topic_content.put("ПРОЩАНИЕ", null);
         this.question_answer = new HashMap<>();
         String[] lines = get_text();
         for (int i = 0; i < lines.length - 1; i++) {
