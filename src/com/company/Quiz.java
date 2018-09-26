@@ -1,58 +1,56 @@
 package com.company;
 
+import javafx.util.Pair;
+
 import java.util.HashMap;
-import java.util.Scanner;
+import java.util.Stack;
 
 public class Quiz {
     private int score;
     private int tries;
-    private HashMap<String, String> question_answer;
-    private Scanner scanner;
-    private int right_answers_count;
-    private Conversation conversation;
+    private Stack<Pair<String, String>> questions;
+    public boolean isOver;
 
-    public Quiz(Conversation conversation, HashMap<String, String> question_answer, Scanner scanner) {
+    public Quiz(HashMap<String, String> questionAnswer) {
+        isOver = false;
         score = 0;
         tries = 3;
-        this.question_answer = question_answer;
-        this.scanner = scanner;
-        this.conversation = conversation;
-        right_answers_count = 0;
+        questions = new Stack<>();
+        for (String question : questionAnswer.keySet()) {
+            questions.push(new Pair<>(question, questionAnswer.get(question)));
+        }
     }
 
-    public void launch() {
-        quiz:
-        for (String question : question_answer.keySet()) {
-            String right_answer = question_answer.get(question);
-            while (true) {
-                System.out.println(question);
-                String user_answer = scanner.nextLine().toLowerCase();
-                if (user_answer.equals(right_answer)) {
-                    right_answers_count++;
-                    score += 100;
-                    System.out.println(String.format("Верно! Ты получаешь 100 очков. Твой счёт: %d", score));
-                    break;
-                } else if (user_answer.equals("выход"))
-                    break quiz;
-                else if (user_answer.equals("бот, пока!")) {
-                    conversation.continue_conversation = false;
-                    break quiz;
-                } else if (user_answer.equals("бот, покажи список команд")) {
-                    conversation.show_help();
-                } else {
-                    System.out.println("Неверно!");
-                    tries--;
-                    if (tries > 0)
-                        System.out.println(String.format("У тебя осталось %d попыток. Подумай и ответь ещё раз.", tries));
-                    else {
-                        System.out.println("У тебя больше не осталось попыток.");
-                        break quiz;
-                    }
+    public String handle(String message, boolean isThereAnswer) {
+        StringBuilder answer = new StringBuilder();
+        String question = questions.peek().getKey();
+        String rightAnswer = questions.peek().getValue();
+        if (message.equals("выход"))
+            isOver = true;
+        else if (isThereAnswer) {
+            if (message.equals(rightAnswer)) {
+                score += 100;
+                answer.append(String.format("Верно! Ты получаешь 100 очков. Твой счёт: %d\r\n", score));
+                questions.pop();
+                if (questions.isEmpty()) {
+                    answer.append("Ты правильно ответил на все вопросы! :)\r\n");
+                    isOver = true;
+                } else
+                    answer.append(handle(message, false));
+            } else {
+                answer.append("Неверно!");
+                tries--;
+                if (tries > 0)
+                    answer.append(String.format("У тебя осталось %d попыток. Подумай и ответь ещё раз.\r\n", tries));
+                else {
+                    answer.append("У тебя больше не осталось попыток.\r\n");
+                    isOver = true;
                 }
             }
-        }
-        if (right_answers_count == question_answer.size())
-            System.out.println("Ты правильно ответил на все вопросы! :)");
-        System.out.println(String.format("Игра окончена. Твой счёт: %d", score));
+        } else if (!isOver)
+            answer.append(question);
+        if (isOver)
+            answer.append(String.format("Игра окончена. Твой счёт: %d\r\n", score));
+        return answer.toString();
     }
 }

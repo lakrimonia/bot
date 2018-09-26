@@ -1,73 +1,82 @@
 package com.company;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
+import java.util.function.Supplier;
+
+enum State {INITIAL, QUIZ}
 
 public class Conversation {
-    private HashMap<String, String> topic_content; // Basic background information
-    private HashMap<String, String> question_answer;
-    private Scanner scanner;
-    public List<String> commands;
-    public boolean continue_conversation;
+    private State state;
+    private Quiz quiz;
+    private HashMap<String, Supplier<String>> commands;
+    private HashMap<String, String> topicContent; // Basic background information
+    private HashMap<String, String> questionAnswer;
+    public boolean continueConversation;
 
-    public Conversation(HashMap<String, String> topic_content, HashMap<String, String> question_answer) {
-        scanner = new Scanner(System.in);
-        this.topic_content = topic_content;
-        this.question_answer = question_answer;
-        continue_conversation = true;
-        commands = Arrays.asList("бот, покажи список команд", "бот, пока!");
+    public Conversation(HashMap<String, String> topicContent, HashMap<String, String> questionAnswer) {
+        state = State.INITIAL;
+        commands = new HashMap<>();
+        commands.put("бот, пока", this::sayBye);
+        commands.put("бот, покажи список команд", this::showHelp);
+        this.topicContent = topicContent;
+        this.questionAnswer = questionAnswer;
+        continueConversation = true;
     }
 
     public void start() {
-        System.out.print(topic_content.get("ПРИВЕТСТВИЕ"));
-        System.out.print(topic_content.get("СПРАВКА"));
-        System.out.print(topic_content.get("ПРЕДЛОЖЕНИЕ ПОИГРАТЬ"));
-        while (continue_conversation)
-            select_theme();
-        say_bye();
+        Agent agent = new Agent();
+        agent.print(topicContent.get("ПРИВЕТСТВИЕ"));
+        agent.print(topicContent.get("СПРАВКА"));
+        agent.print(topicContent.get("ПРЕДЛОЖЕНИЕ ПОИГРАТЬ"));
+
+        while (continueConversation) {
+            String message = agent.getMessage();
+            agent.print(handle(message));
+        }
     }
 
-    private void select_theme() {
-        String input = scanner.nextLine().toLowerCase();
-        if (commands.contains(input)) {
-            execute_command(input);
-        } else {
-            switch (input) {
-                case "математика":
-                    System.out.println("Отличный выбор! Математика -- царица наук!");
-                    Quiz quiz = new Quiz(this, question_answer, scanner);
-                    quiz.launch();
-                    if (continue_conversation) {
-                        System.out.println("Хочешь поиграть ещё раз? :) Выбери тему:");
-                        System.out.println("1. Математика");
+    private String handle(String message) {
+        StringBuilder answer = new StringBuilder();
+        message = message.toLowerCase();
+        if (commands.keySet().contains(message)) {
+            answer.append(commands.get(message).get());
+            if (state == State.QUIZ)
+                answer.append(quiz.handle(message, false));
+        } else
+            switch (state) {
+                case INITIAL:
+                    switch (message) {
+                        case "математика":
+                            answer.append("Отличный выбор! Математика -- царица наук!\r\n");
+                            quiz = new Quiz(questionAnswer);
+                            state = State.QUIZ;
+                            answer.append(quiz.handle(message, false));
+                            break;
+                        default:
+                            answer.append(topicContent.get("НЕКОРРЕКТНАЯ КОМАНДА"));
                     }
                     break;
-                default:
-                    System.out.println(topic_content.get("НЕКОРРЕКТНАЯ КОМАНДА"));
-                    select_theme();
+                case QUIZ:
+                    answer.append(quiz.handle(message, true));
+                    if (quiz.isOver){
+                        state = State.INITIAL;
+                        answer.append("Хочешь поиграть ещё раз? :) Выбери тему:\r\n");
+                        answer.append("1. Математика\r\n");
+                    }
                     break;
             }
-        }
+        return answer.toString();
     }
 
-    private void say_bye() {
-        System.out.println(topic_content.get("ПРОЩАНИЕ"));
+    private String sayBye() {
+        continueConversation = false;
+        if (quiz != null)
+            quiz.isOver = true;
+        return topicContent.get("ПРОЩАНИЕ");
     }
 
-    public void show_help() {
-        System.out.println(topic_content.get("СПРАВКА"));
-    }
-
-    public void execute_command(String command) {
-        switch (command) {
-            case "бот, пока!":
-                continue_conversation = false;
-                break;
-            case "бот, покажи список команд":
-                System.out.println(topic_content.get("СПРАВКА"));
-                break;
-        }
+    public String showHelp() {
+        return topicContent.get("СПРАВКА");
     }
 }
