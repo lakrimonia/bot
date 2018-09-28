@@ -55,11 +55,12 @@ public class Conversation {
                             break;
                         default:
                             answer.append(topicContent.get("НЕКОРРЕКТНАЯ КОМАНДА"));
+                            break;
                     }
                     break;
                 case QUIZ:
                     answer.append(quiz.handle(message, true));
-                    if (quiz.isOver){
+                    if (quiz.isOver) {
                         state = State.INITIAL;
                         answer.append("Хочешь поиграть ещё раз? :) Выбери тему:\r\n");
                         answer.append("1. Математика\r\n");

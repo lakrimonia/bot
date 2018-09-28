@@ -10,7 +10,7 @@ public class Bot {
 	public Bot() throws IOException {
 		topicContent = new HashMap<>();
 		this.questionAnswer = new HashMap<>();
-		String[] lines = getText("text.txt");
+		String[] lines = getText("topics.txt");
 		for (int i = 0; i < lines.length - 1; i++) {
 			if (lines[i].charAt(0) == '#') {
 				String topic = lines[i].substring(1);
@@ -25,7 +25,7 @@ public class Bot {
 			}
 		}
 
-		lines = getText("qus.txt");
+		lines = getText("questions.txt");
 		for (int i = 1; i < lines.length - 1; i++) {
 			while (!lines[i].equals("")) {
 				String[] question_answer = lines[i].split("--");
