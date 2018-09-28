@@ -9,12 +9,14 @@ public class Quiz {
     private int score;
     private int tries;
     private Stack<Pair<String, String>> questions;
+    private HashMap<String, String> topicContent;
     public boolean isOver;
 
-    public Quiz(HashMap<String, String> questionAnswer) {
+    public Quiz(HashMap<String, String> questionAnswer, HashMap<String, String> topicContent) {
         isOver = false;
         score = 0;
         tries = 3;
+        this.topicContent = topicContent;
         questions = new Stack<>();
         for (String question : questionAnswer.keySet()) {
             questions.push(new Pair<>(question, questionAnswer.get(question)));
@@ -34,17 +36,17 @@ public class Quiz {
         else if (!isOver)
             answer.append(question);
         if (isOver)
-            answer.append(String.format("Игра окончена. Твой счёт: %d\r\n", score));
+            answer.append(String.format(topicContent.get("КОНЕЦ ИГРЫ"), score));
         return answer.toString();
     }
 
     private String countAsRightAnswer(String message) {
         StringBuilder result = new StringBuilder();
         score += 100;
-        result.append(String.format("Верно! Ты получаешь 100 очков. Твой счёт: %d\r\n", score));
+        result.append(String.format(topicContent.get("ВЕРНЫЙ ОТВЕТ"), score));
         questions.pop();
         if (questions.isEmpty()) {
-            result.append("Ты правильно ответил на все вопросы! :)\r\n");
+            result.append(topicContent.get("ПОБЕДА"));
             isOver = true;
         } else
             result.append(handle(message, false));
@@ -53,12 +55,12 @@ public class Quiz {
 
     private String countAsWrongAnswer() {
         StringBuilder result = new StringBuilder();
-        result.append("Неверно!\r\n");
+        result.append(topicContent.get("НЕВЕРНЫЙ ОТВЕТ"));
         tries--;
         if (tries > 0)
-            result.append(String.format("У тебя осталось %d попыток. Подумай и ответь ещё раз.\r\n", tries));
+            result.append(String.format(topicContent.get("КОЛИЧЕСТВО ПОПЫТОК"), tries));
         else {
-            result.append("У тебя больше не осталось попыток.\r\n");
+            result.append(topicContent.get("ПРОИГРЫШ"));
             isOver = true;
         }
         return result.toString();

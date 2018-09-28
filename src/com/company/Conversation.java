@@ -48,8 +48,8 @@ public class Conversation {
                 case INITIAL:
                     switch (message) {
                         case "математика":
-                            answer.append("Отличный выбор! Математика -- царица наук!\r\n");
-                            quiz = new Quiz(questionAnswer);
+                            answer.append(topicContent.get("МАТЕМАТИКА"));
+                            quiz = new Quiz(questionAnswer, topicContent);
                             state = State.QUIZ;
                             answer.append(quiz.handle(message, false));
                             break;
@@ -62,8 +62,7 @@ public class Conversation {
                     answer.append(quiz.handle(message, true));
                     if (quiz.isOver) {
                         state = State.INITIAL;
-                        answer.append("Хочешь поиграть ещё раз? :) Выбери тему:\r\n");
-                        answer.append("1. Математика\r\n");
+                        answer.append(topicContent.get("ПОИГРАТЬ ЕЩЁ РАЗ"));
                     }
                     break;
             }
