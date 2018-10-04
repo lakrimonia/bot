@@ -1,7 +1,6 @@
 package com.company;
 
 import java.util.HashMap;
-import java.util.Scanner;
 import java.util.function.Supplier;
 
 enum State {INITIAL, QUIZ}
@@ -36,7 +35,7 @@ public class Conversation {
         }
     }
 
-    private String handle(String message) {
+    public String handle(String message) {
         StringBuilder answer = new StringBuilder();
         message = message.toLowerCase();
         if (commands.keySet().contains(message)) {
@@ -78,5 +77,9 @@ public class Conversation {
 
     public String showHelp() {
         return topicContent.get("СПРАВКА");
+    }
+    
+    public State GetState() {
+    	return state;
     }
 }
