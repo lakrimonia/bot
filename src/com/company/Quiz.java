@@ -65,4 +65,12 @@ public class Quiz {
         }
         return result.toString();
     }
+
+    public int getScore(){
+        return score;
+    }
+
+    public int getTries(){
+        return tries;
+    }
 }

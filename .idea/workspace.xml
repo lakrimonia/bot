@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="05d37eeb-a340-41ce-93d8-e694c08e6a89" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bot.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/ConversationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ConversationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Quiz.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/QuizTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/QuizTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -21,17 +20,19 @@
     <session id="1936216079">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="11" />
+          <entry key="project.closed" value="15" />
           <entry key="project.open.time.13" value="1" />
+          <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.48" value="1" />
+          <entry key="project.open.time.48" value="2" />
           <entry key="project.open.time.5" value="2" />
           <entry key="project.open.time.51" value="1" />
           <entry key="project.open.time.53" value="1" />
           <entry key="project.open.time.55" value="2" />
           <entry key="project.open.time.56" value="2" />
           <entry key="project.open.time.68" value="1" />
-          <entry key="project.opened" value="12" />
+          <entry key="project.open.time.73" value="1" />
+          <entry key="project.opened" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -46,12 +47,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="3656" />
+          <entry key="java" value="4874" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3656" />
+          <entry key="JAVA" value="4874" />
         </counts>
       </usages-collector>
     </session>
@@ -83,8 +84,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Bot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
+            <state relative-caret-position="120">
+              <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="7" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -95,8 +96,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Conversation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+            <state relative-caret-position="-480">
+              <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -105,9 +106,9 @@
         <entry file="file://$PROJECT_DIR$/src/com/company/ConversationTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="192">
-              <caret line="8" column="8" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="15" />
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
               <folding>
-                <element signature="e#147#148#0" expanded="true" />
+                <element signature="e#146#147#0" expanded="true" />
                 <element signature="e#168#169#0" expanded="true" />
               </folding>
             </state>
@@ -117,8 +118,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Quiz.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+            <state relative-caret-position="1680">
+              <caret line="73" column="21" selection-start-line="73" selection-start-column="21" selection-end-line="73" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -129,11 +130,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/QuizTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="8" column="15" lean-forward="true" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+            <state relative-caret-position="144">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
               <folding>
-                <element signature="e#142#143#0" expanded="true" />
-                <element signature="e#164#165#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -170,8 +170,8 @@
         <option value="$PROJECT_DIR$/src/com/company/Bot.java" />
         <option value="$PROJECT_DIR$/src/com/company/Main.java" />
         <option value="$PROJECT_DIR$/src/com/company/Conversation.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Quiz.java" />
         <option value="$PROJECT_DIR$/src/com/company/ConversationTest.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Quiz.java" />
         <option value="$PROJECT_DIR$/src/com/company/QuizTest.java" />
       </list>
     </option>
@@ -194,6 +194,7 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -220,7 +221,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -230,7 +230,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538593185543" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538656032525" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Arquillian JUnit4" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
@@ -257,20 +257,99 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
+  <component name="RunManager" selected="JUnit.QuizTest">
+    <configuration name="QuizTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bot" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.company" />
+      <option name="MAIN_CLASS_NAME" value="com.company.QuizTest" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="QuizTest.failAfterThreeWrongAnswers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.company" />
+      <option name="MAIN_CLASS_NAME" value="com.company.QuizTest" />
+      <option name="METHOD_NAME" value="failAfterThreeWrongAnswers" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="QuizTest.giveRightAnswer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.company" />
+      <option name="MAIN_CLASS_NAME" value="com.company.QuizTest" />
+      <option name="METHOD_NAME" value="giveRightAnswer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="QuizTest.winAfterAllRightAnswers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.company" />
+      <option name="MAIN_CLASS_NAME" value="com.company.QuizTest" />
+      <option name="METHOD_NAME" value="winAfterAllRightAnswers" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="QuizTest.wrongAnswerGiven" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.company" />
+      <option name="MAIN_CLASS_NAME" value="com.company.QuizTest" />
+      <option name="METHOD_NAME" value="wrongAnswerGiven" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.QuizTest.giveRightAnswer" />
+      <item itemvalue="JUnit.QuizTest" />
+      <item itemvalue="JUnit.QuizTest.wrongAnswerGiven" />
+      <item itemvalue="JUnit.QuizTest.winAfterAllRightAnswers" />
+      <item itemvalue="JUnit.QuizTest.failAfterThreeWrongAnswers" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.QuizTest" />
+        <item itemvalue="JUnit.QuizTest.failAfterThreeWrongAnswers" />
+        <item itemvalue="JUnit.QuizTest.winAfterAllRightAnswers" />
+        <item itemvalue="JUnit.QuizTest.wrongAnswerGiven" />
+        <item itemvalue="JUnit.QuizTest.giveRightAnswer" />
       </list>
     </recent_temporary>
   </component>
@@ -295,18 +374,52 @@
       <workItem from="1537981779423" duration="696000" />
       <workItem from="1538119542511" duration="7518000" />
       <workItem from="1538309937099" duration="353000" />
-      <workItem from="1538592341338" duration="712000" />
+      <workItem from="1538592341338" duration="859000" />
+      <workItem from="1538634862562" duration="2795000" />
+      <workItem from="1538647350096" duration="671000" />
+      <workItem from="1538654397022" duration="1657000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="QuizTest_wrongAnswerGiven - 2018.10.04 at 17h 10m 18s.xml">
+      <configuration name="QuizTest.wrongAnswerGiven" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="QuizTest_wrongAnswerGiven - 2018.10.04 at 17h 10m 38s.xml">
+      <configuration name="QuizTest.wrongAnswerGiven" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="QuizTest - 2018.10.04 at 17h 14m 24s.xml">
+      <configuration name="QuizTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="QuizTest_winAfterAllRightAnswers - 2018.10.04 at 17h 17m 10s.xml">
+      <configuration name="QuizTest.winAfterAllRightAnswers" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="QuizTest_winAfterAllRightAnswers - 2018.10.04 at 17h 17m 44s.xml">
+      <configuration name="QuizTest.winAfterAllRightAnswers" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="QuizTest - 2018.10.04 at 17h 19m 17s.xml">
+      <configuration name="QuizTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="QuizTest_failAfterThreeWrongAnswers - 2018.10.04 at 17h 19m 54s.xml">
+      <configuration name="QuizTest.failAfterThreeWrongAnswers" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="QuizTest_failAfterThreeWrongAnswers - 2018.10.04 at 17h 20m 13s.xml">
+      <configuration name="QuizTest.failAfterThreeWrongAnswers" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="QuizTest - 2018.10.04 at 17h 21m 13s.xml">
+      <configuration name="QuizTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="QuizTest - 2018.10.04 at 17h 26m 48s.xml">
+      <configuration name="QuizTest" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31565000" />
+    <option name="totallyTimeSpent" value="36761000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28668684" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30030257" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -370,49 +483,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Bot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        <state relative-caret-position="120">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="7" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Quiz.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Conversation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/QuizTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="e#142#143#0" expanded="true" />
-            <element signature="e#164#165#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/ConversationTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+        <state relative-caret-position="192">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
-            <element signature="e#147#148#0" expanded="true" />
+            <element signature="e#146#147#0" expanded="true" />
             <element signature="e#168#169#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Conversation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-480">
+          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Quiz.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1680">
+          <caret line="73" column="21" selection-start-line="73" selection-start-column="21" selection-end-line="73" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/QuizTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
