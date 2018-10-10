@@ -3,11 +3,9 @@ package com.company;
 import java.util.HashMap;
 import java.util.function.Supplier;
 
-enum State {INITIAL, QUIZ}
-
 public class Conversation {
-    private State state;
-    private Quiz quiz;
+    public State state;
+    public Quiz quiz;
     private HashMap<String, Supplier<String>> commands;
     private HashMap<String, String> topicContent; // Basic background information
     private HashMap<String, String> questionAnswer;
@@ -78,8 +76,12 @@ public class Conversation {
     public String showHelp() {
         return topicContent.get("СПРАВКА");
     }
-    
-    public State GetState() {
+
+    public State getState() {
     	return state;
+    }
+
+    public void initializeQuiz(){
+        quiz = new Quiz(questionAnswer, topicContent);
     }
 }

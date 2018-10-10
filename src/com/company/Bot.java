@@ -4,8 +4,8 @@ import java.io.*;
 import java.util.HashMap;
 
 public class Bot {
-	public HashMap<String, String> topicContent;
-	public HashMap<String, String> questionAnswer;
+	HashMap<String, String> topicContent;
+	HashMap<String, String> questionAnswer;
 
 	public Bot() throws IOException {
 		topicContent = new HashMap<>();

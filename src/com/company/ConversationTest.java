@@ -1,8 +1,8 @@
 package com.company;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ConversationTest {
 	private Bot bot;
@@ -37,19 +37,19 @@ class ConversationTest {
 	
 	@org.junit.jupiter.api.Test
 	public void testState(){
-		assertEquals(State.INITIAL, conversation.GetState());
+		assertEquals(State.INITIAL, conversation.getState());
 		conversation.handle("математика");
-		assertEquals(State.QUIZ, conversation.GetState());
+		assertEquals(State.QUIZ, conversation.getState());
 	}
 	
 	@org.junit.jupiter.api.Test
 	public void testStateInitial(){
 		conversation.handle("математика");
-		assertEquals(State.QUIZ, conversation.GetState());
+		assertEquals(State.QUIZ, conversation.getState());
 		for (int i = 0; i < 3; i++) {
 			conversation.handle("Не знаю");
 		}
-		assertEquals(State.INITIAL, conversation.GetState());
+		assertEquals(State.INITIAL, conversation.getState());
 	}
 	
 	@org.junit.jupiter.api.Test
