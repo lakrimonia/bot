@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.function.Supplier;
 
 public class Conversation {
-    public State state;
+    private State state;
     public Quiz quiz;
     private HashMap<String, Supplier<String>> commands;
     private HashMap<String, String> topicContent; // Basic background information
@@ -82,6 +82,7 @@ public class Conversation {
     }
 
     public void initializeQuiz(){
+        state = State.QUIZ;
         quiz = new Quiz(questionAnswer, topicContent);
     }
 }

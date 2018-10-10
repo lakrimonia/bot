@@ -29,7 +29,6 @@ public class StartQuiz implements ICommand {
     @Override
     public String execute() {
         conversation.initializeQuiz();
-        conversation.state = State.QUIZ;
         return getBotAnswer();
     }
 }
