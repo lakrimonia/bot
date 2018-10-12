@@ -11,8 +11,11 @@ public class Quiz {
     private Stack<Pair<String, String>> questions;
     private HashMap<String, String> topicContent;
     public boolean isOver;
+    private Conversation conversation;
 
-    public Quiz(HashMap<String, String> questionAnswer, HashMap<String, String> topicContent) {
+    public Quiz(HashMap<String, String> questionAnswer, HashMap<String, String> topicContent,
+    		Conversation conversation) {
+    	this.conversation = conversation;
         isOver = false;
         score = 0;
         tries = 3;
@@ -24,20 +27,31 @@ public class Quiz {
     }
 
     public String handle(String message, boolean isThereAnswer) {
-        StringBuilder answer = new StringBuilder();
-        String question = questions.peek().getKey();
+        StringBuilder answerBuilder = new StringBuilder();
+        String question = getQuestion();
         String rightAnswer = questions.peek().getValue();
-        if (message.equals("выход"))
+        String answer = conversation.tryHandle(message);
+        
+        if (answer != null) {
+        	return answer;
+        }
+
+        answerBuilder.append(message.equals(rightAnswer)
+                ? countAsRightAnswer(message)
+                : countAsWrongAnswer());
+        return answerBuilder.toString();
+        
+        /*if (message.equals("выход"))
             isOver = true;
         else if (isThereAnswer)
-            answer.append(message.equals(rightAnswer)
+            answerBuilder.append(message.equals(rightAnswer)
                     ? countAsRightAnswer(message)
                     : countAsWrongAnswer());
         else if (!isOver)
-            answer.append(question);
+            answerBuilder.append(question);
         if (isOver)
-            answer.append(String.format(topicContent.get("КОНЕЦ ИГРЫ"), score));
-        return answer.toString();
+            answerBuilder.append(String.format(topicContent.get("КОНЕЦ ИГРЫ"), score));
+        return answerBuilder.toString();*/
     }
 
     private String countAsRightAnswer(String message) {
@@ -64,6 +78,10 @@ public class Quiz {
             isOver = true;
         }
         return result.toString();
+    }
+    
+    public String getQuestion() {
+    	return questions.peek().getKey();
     }
 
     public int getScore(){

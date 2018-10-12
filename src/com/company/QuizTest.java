@@ -15,7 +15,9 @@ class QuizTest {
         Bot bot = new Bot();
         topicContent = bot.topicContent;
         questionAnswer = bot.questionAnswer;
-        this.quiz = new Quiz(questionAnswer, topicContent);
+        Conversation c = new Conversation(topicContent, questionAnswer);
+        CommandHandler ch = new CommandHandler(c, quiz);
+        this.quiz = new Quiz(questionAnswer, topicContent, c);
     }
 
     @org.junit.jupiter.api.Test

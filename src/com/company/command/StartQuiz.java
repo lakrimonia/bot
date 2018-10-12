@@ -1,7 +1,6 @@
 package com.company.command;
 
 import com.company.Conversation;
-import com.company.State;
 
 public class StartQuiz implements ICommand {
     private String userRequest;
@@ -22,7 +21,7 @@ public class StartQuiz implements ICommand {
 
     @Override
     public String getBotAnswer() {
-        botAnswer.append(conversation.quiz.handle(userRequest, false));
+        botAnswer.append(conversation.quiz.getQuestion());
         return botAnswer.toString();
     }
 

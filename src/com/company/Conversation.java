@@ -6,12 +6,15 @@ import java.util.function.Supplier;
 public class Conversation {
     private State state;
     public Quiz quiz;
+    private CommandHandler commandHandler;
     private HashMap<String, Supplier<String>> commands;
     private HashMap<String, String> topicContent; // Basic background information
     private HashMap<String, String> questionAnswer;
     public boolean continueConversation;
 
     public Conversation(HashMap<String, String> topicContent, HashMap<String, String> questionAnswer) {
+        quiz = new Quiz(questionAnswer, topicContent, this);
+        commandHandler = new CommandHandler(this, quiz);
         state = State.INITIAL;
         commands = new HashMap<>();
         commands.put("бот, пока", this::sayBye);
@@ -34,9 +37,25 @@ public class Conversation {
     }
 
     public String handle(String message) {
-        StringBuilder answer = new StringBuilder();
+        //StringBuilder answer = new StringBuilder();
         message = message.toLowerCase();
-        if (commands.keySet().contains(message)) {
+        String answer = null;
+        
+        switch (state) {
+        	case INITIAL:
+        		answer = commandHandler.tryHandleAsCommand(message, state);
+        		break;
+    		
+        	case QUIZ:
+        		answer = quiz.handle(message, true);
+        }
+        
+        if (answer == null) {
+        	return topicContent.get("НЕКОРРЕКТНАЯ КОМАНДА");
+        }
+        return answer;
+
+        /*if (commands.keySet().contains(message)) {
             answer.append(commands.get(message).get());
             if (state == State.QUIZ)
                 answer.append(quiz.handle(message, false));
@@ -46,7 +65,6 @@ public class Conversation {
                     switch (message) {
                         case "математика":
                             answer.append(topicContent.get("МАТЕМАТИКА"));
-                            quiz = new Quiz(questionAnswer, topicContent);
                             state = State.QUIZ;
                             answer.append(quiz.handle(message, false));
                             break;
@@ -63,7 +81,7 @@ public class Conversation {
                     }
                     break;
             }
-        return answer.toString();
+        return answer.toString();*/
     }
 
     private String sayBye() {
@@ -82,7 +100,10 @@ public class Conversation {
     }
 
     public void initializeQuiz(){
-        state = State.QUIZ;
-        quiz = new Quiz(questionAnswer, topicContent);
+        state = State.QUIZ;        	
+    }
+    
+    public String tryHandle(String message) {
+    	return commandHandler.tryHandleAsCommand(message, state);
     }
 }
