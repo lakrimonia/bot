@@ -26,32 +26,17 @@ public class Quiz {
         }
     }
 
-    public String handle(String message, boolean isThereAnswer) {
+    public String handle(String message) {
         StringBuilder answerBuilder = new StringBuilder();
-        String question = getQuestion();
         String rightAnswer = questions.peek().getValue();
-        String answer = conversation.tryHandle(message);
+        String answer = conversation.tryHandle(message);  
+        if (answer != null) return answer;
         
-        if (answer != null) {
-        	return answer;
-        }
-
         answerBuilder.append(message.equals(rightAnswer)
                 ? countAsRightAnswer(message)
                 : countAsWrongAnswer());
         return answerBuilder.toString();
         
-        /*if (message.equals("выход"))
-            isOver = true;
-        else if (isThereAnswer)
-            answerBuilder.append(message.equals(rightAnswer)
-                    ? countAsRightAnswer(message)
-                    : countAsWrongAnswer());
-        else if (!isOver)
-            answerBuilder.append(question);
-        if (isOver)
-            answerBuilder.append(String.format(topicContent.get("КОНЕЦ ИГРЫ"), score));
-        return answerBuilder.toString();*/
     }
 
     private String countAsRightAnswer(String message) {
@@ -63,7 +48,7 @@ public class Quiz {
             result.append(topicContent.get("ПОБЕДА"));
             isOver = true;
         } else
-            result.append(handle(message, false));
+            result.append(getQuestion());
         return result.toString();
     }
 
@@ -71,9 +56,10 @@ public class Quiz {
         StringBuilder result = new StringBuilder();
         result.append(topicContent.get("НЕВЕРНЫЙ ОТВЕТ"));
         tries--;
-        if (tries > 0)
+        if (tries > 0) {
             result.append(String.format(topicContent.get("КОЛИЧЕСТВО ПОПЫТОК"), tries));
-        else {
+        	result.append(getQuestion());
+    	} else {
             result.append(topicContent.get("ПРОИГРЫШ"));
             isOver = true;
         }

@@ -24,9 +24,9 @@ class QuizTest {
     void rightAnswerGiven() {
         int initialScore = quiz.getScore();
         int initialTries = quiz.getTries();
-        String question = quiz.handle("", false);
+        String question = quiz.handle("");
         String answer = questionAnswer.get(question);
-        String actual = quiz.handle(answer, true).split("\r\n")[0] + "\r\n";
+        String actual = quiz.handle(answer).split("\r\n")[0] + "\r\n";
         assertEquals(String.format(topicContent.get("ВЕРНЫЙ ОТВЕТ"), quiz.getScore()), actual);
         assertTrue(quiz.getScore() > initialScore);
         assertTrue(quiz.getTries() == initialTries);
@@ -36,9 +36,9 @@ class QuizTest {
     void wrongAnswerGiven() {
         int initialTries = quiz.getTries();
         int initialScore = quiz.getScore();
-        String question = quiz.handle("", false);
+        String question = quiz.handle("");
         String answer = "wrong answer";
-        String actual = quiz.handle(answer, true).split("\r\n")[0] + "\r\n";
+        String actual = quiz.handle(answer).split("\r\n")[0] + "\r\n";
         assertEquals(topicContent.get("НЕВЕРНЫЙ ОТВЕТ"), actual);
         assertTrue(quiz.getScore() == initialScore);
         assertTrue(quiz.getTries() + 1 == initialTries);

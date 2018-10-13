@@ -37,7 +37,6 @@ public class Conversation {
     }
 
     public String handle(String message) {
-        //StringBuilder answer = new StringBuilder();
         message = message.toLowerCase();
         String answer = null;
         
@@ -45,43 +44,17 @@ public class Conversation {
         	case INITIAL:
         		answer = commandHandler.tryHandleAsCommand(message, state);
         		break;
-    		
         	case QUIZ:
-        		answer = quiz.handle(message, true);
+        		answer = quiz.handle(message);
+        		if (quiz.isOver == true) {
+        			state = State.INITIAL;
+        		}
         }
         
         if (answer == null) {
         	return topicContent.get("НЕКОРРЕКТНАЯ КОМАНДА");
         }
         return answer;
-
-        /*if (commands.keySet().contains(message)) {
-            answer.append(commands.get(message).get());
-            if (state == State.QUIZ)
-                answer.append(quiz.handle(message, false));
-        } else
-            switch (state) {
-                case INITIAL:
-                    switch (message) {
-                        case "математика":
-                            answer.append(topicContent.get("МАТЕМАТИКА"));
-                            state = State.QUIZ;
-                            answer.append(quiz.handle(message, false));
-                            break;
-                        default:
-                            answer.append(topicContent.get("НЕКОРРЕКТНАЯ КОМАНДА"));
-                            break;
-                    }
-                    break;
-                case QUIZ:
-                    answer.append(quiz.handle(message, true));
-                    if (quiz.isOver) {
-                        state = State.INITIAL;
-                        answer.append(topicContent.get("ПОИГРАТЬ ЕЩЁ РАЗ"));
-                    }
-                    break;
-            }
-        return answer.toString();*/
     }
 
     private String sayBye() {
