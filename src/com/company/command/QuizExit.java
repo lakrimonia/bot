@@ -1,16 +1,23 @@
 package com.company.command;
 
-import com.company.Quiz;
+import com.company.Conversation;
 
 public class QuizExit implements ICommand {
+    private String description;
     private String userRequest;
     private String botAnswer;
-    private Quiz quiz;
+    private Conversation conversation;
 
-    public QuizExit(Quiz quiz) {
+    public QuizExit(Conversation conversation) {
+        description = "выход из игры.";
         userRequest = "выход";
-        botAnswer = String.format("Игра окончена. Твой счёт: %d", quiz.getScore());
-        this.quiz = quiz;
+        botAnswer = String.format("Игра окончена. Твой счёт: %d", conversation.quiz.getScore());
+        this.conversation = conversation;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
     }
 
     @Override
@@ -25,7 +32,7 @@ public class QuizExit implements ICommand {
 
     @Override
     public String execute() {
-        quiz.isOver = true;
+        conversation.quiz.isOver = true;
         return getBotAnswer();
     }
 }

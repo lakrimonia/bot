@@ -3,14 +3,21 @@ package com.company.command;
 import com.company.Conversation;
 
 public class ConversationExit implements ICommand {
+    private String description;
     private String userRequest;
     private String botAnswer;
     private Conversation conversation;
 
     public ConversationExit(Conversation conversation) {
+        description = "завершение диалога.";
         userRequest = "бот, пока";
         botAnswer = "Пока! Жду нашей встречи!";
         this.conversation = conversation;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
     }
 
     @Override

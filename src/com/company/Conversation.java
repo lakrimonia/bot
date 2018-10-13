@@ -14,7 +14,7 @@ public class Conversation {
 
     public Conversation(HashMap<String, String> topicContent, HashMap<String, String> questionAnswer) {
         quiz = new Quiz(questionAnswer, topicContent, this);
-        commandHandler = new CommandHandler(this, quiz);
+        commandHandler = new CommandHandler(this);
         state = State.INITIAL;
         commands = new HashMap<>();
         commands.put("бот, пока", this::sayBye);
@@ -46,7 +46,7 @@ public class Conversation {
         		break;
         	case QUIZ:
         		answer = quiz.handle(message);
-        		if (quiz.isOver == true) {
+        		if (quiz.isOver) {
         			state = State.INITIAL;
         		}
         }

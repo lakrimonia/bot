@@ -16,7 +16,7 @@ class QuizTest {
         topicContent = bot.topicContent;
         questionAnswer = bot.questionAnswer;
         Conversation c = new Conversation(topicContent, questionAnswer);
-        CommandHandler ch = new CommandHandler(c, quiz);
+        CommandHandler ch = new CommandHandler(c);
         this.quiz = new Quiz(questionAnswer, topicContent, c);
     }
 
