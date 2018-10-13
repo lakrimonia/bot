@@ -1,18 +1,25 @@
 package com.company.command;
 
 import com.company.Conversation;
+import com.company.State;
 
 public class ConversationExit implements ICommand {
     private String description;
     private String userRequest;
     private String botAnswer;
     private Conversation conversation;
+    private State state = null;
 
     public ConversationExit(Conversation conversation) {
         description = "завершение диалога.";
         userRequest = "бот, пока";
-        botAnswer = "Пока! Жду нашей встречи!";
+        botAnswer = "Пока! Жду нашей встречи!\r\n";
         this.conversation = conversation;
+    }
+
+    @Override
+    public State getState() {
+        return state;
     }
 
     @Override

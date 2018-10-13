@@ -7,41 +7,37 @@ import java.util.HashMap;
 
 public class CommandHandler {
     private HashMap<String, ICommand> systemCommands;
-    private HashMap<String, ICommand> initialCommands;
-    private HashMap<String, ICommand> quizCommands;
     private HashMap<State, HashMap<String, ICommand>> stateAllowedCommands;
 
-
     public CommandHandler(Conversation conversation) {
-        stateAllowedCommands = new HashMap<>();
-        systemCommands = getCommands(new ICommand[]{
+        ICommand[] commands = new ICommand[]{
                 new ConversationExit(conversation),
-                new ShowHelp(conversation)
-        });
-        initialCommands = getCommands(new ICommand[]{
+                new QuizExit(conversation),
+                new ShowHelp(conversation),
                 new StartQuiz(conversation)
-        }, State.INITIAL);
-        quizCommands = getCommands(new ICommand[]{
-                new QuizExit(conversation)
-        }, State.QUIZ);
-        ShowHelp helpCommand = (ShowHelp)systemCommands.get("бот, покажи список команд");
+        };
+        systemCommands = new HashMap<>();
+        stateAllowedCommands = new HashMap<>();
+        sortCommands(commands);
+        ShowHelp helpCommand = (ShowHelp) systemCommands.get("бот, покажи список команд");
         helpCommand.createHelpText(systemCommands, stateAllowedCommands);
     }
 
-    private HashMap<String, ICommand> getCommands(ICommand[] commands) {
-        HashMap<String, ICommand> result = new HashMap<>();
+    private void sortCommands(ICommand[] commands) {
         for (ICommand command : commands) {
-            result.put(command.getUserRequest(), command);
+            State state = command.getState();
+            if (state == null)
+                systemCommands.put(command.getUserRequest(), command);
+            else {
+                if (stateAllowedCommands.containsKey(state))
+                    stateAllowedCommands.get(state).put(command.getUserRequest(), command);
+                else {
+                    stateAllowedCommands.put(state, new HashMap<>());
+                    stateAllowedCommands.get(state).put(command.getUserRequest(), command);
+                }
+            }
         }
-        return result;
     }
-
-    private HashMap<String, ICommand> getCommands(ICommand[] commands, State state) {
-        HashMap<String, ICommand> result = getCommands(commands);
-        stateAllowedCommands.put(state, result);
-        return result;
-    }
-
 
     public String tryHandleAsCommand(String message, State state) {
 

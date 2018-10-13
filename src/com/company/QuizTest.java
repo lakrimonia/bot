@@ -45,9 +45,9 @@ class QuizTest {
     }
 
     @org.junit.jupiter.api.Test
-    void winAfterAllRightAnswers(){
+    void winAfterAllRightAnswers() {
         int questionsCount = questionAnswer.size();
-        for(int i=0;i<questionsCount;i++)
+        for (int i = 0; i < questionsCount; i++)
             rightAnswerGiven();
         assertTrue(quiz.isOver);
     }

@@ -39,20 +39,20 @@ public class Conversation {
     public String handle(String message) {
         message = message.toLowerCase();
         String answer = null;
-        
+
         switch (state) {
-        	case INITIAL:
-        		answer = commandHandler.tryHandleAsCommand(message, state);
-        		break;
-        	case QUIZ:
-        		answer = quiz.handle(message);
-        		if (quiz.isOver) {
-        			state = State.INITIAL;
-        		}
+            case INITIAL:
+                answer = commandHandler.tryHandleAsCommand(message, state);
+                break;
+            case QUIZ:
+                answer = quiz.handle(message);
+                if (quiz.isOver) {
+                    state = State.INITIAL;
+                }
         }
-        
+
         if (answer == null) {
-        	return topicContent.get("НЕКОРРЕКТНАЯ КОМАНДА");
+            return topicContent.get("НЕКОРРЕКТНАЯ КОМАНДА");
         }
         return answer;
     }
@@ -69,14 +69,14 @@ public class Conversation {
     }
 
     public State getState() {
-    	return state;
+        return state;
     }
 
-    public void initializeQuiz(){
-        state = State.QUIZ;        	
+    public void initializeQuiz() {
+        state = State.QUIZ;
     }
-    
+
     public String tryHandle(String message) {
-    	return commandHandler.tryHandleAsCommand(message, state);
+        return commandHandler.tryHandleAsCommand(message, state);
     }
 }

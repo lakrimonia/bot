@@ -14,8 +14,8 @@ public class Quiz {
     private Conversation conversation;
 
     public Quiz(HashMap<String, String> questionAnswer, HashMap<String, String> topicContent,
-    		Conversation conversation) {
-    	this.conversation = conversation;
+                Conversation conversation) {
+        this.conversation = conversation;
         isOver = false;
         score = 0;
         tries = 3;
@@ -29,14 +29,14 @@ public class Quiz {
     public String handle(String message) {
         StringBuilder answerBuilder = new StringBuilder();
         String rightAnswer = questions.peek().getValue();
-        String answer = conversation.tryHandle(message);  
+        String answer = conversation.tryHandle(message);
         if (answer != null) return answer;
-        
+
         answerBuilder.append(message.equals(rightAnswer)
                 ? countAsRightAnswer(message)
                 : countAsWrongAnswer());
         return answerBuilder.toString();
-        
+
     }
 
     private String countAsRightAnswer(String message) {
@@ -58,23 +58,23 @@ public class Quiz {
         tries--;
         if (tries > 0) {
             result.append(String.format(topicContent.get("КОЛИЧЕСТВО ПОПЫТОК"), tries));
-        	result.append(getQuestion());
-    	} else {
+            result.append(getQuestion());
+        } else {
             result.append(topicContent.get("ПРОИГРЫШ"));
             isOver = true;
         }
         return result.toString();
     }
-    
+
     public String getQuestion() {
-    	return questions.peek().getKey();
+        return questions.peek().getKey();
     }
 
-    public int getScore(){
+    public int getScore() {
         return score;
     }
 
-    public int getTries(){
+    public int getTries() {
         return tries;
     }
 }

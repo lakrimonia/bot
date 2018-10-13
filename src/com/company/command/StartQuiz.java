@@ -1,12 +1,14 @@
 package com.company.command;
 
 import com.company.Conversation;
+import com.company.State;
 
 public class StartQuiz implements ICommand {
     private String description;
     private String userRequest;
     private StringBuilder botAnswer;
     private Conversation conversation;
+    private State state = State.INITIAL;
 
     public StartQuiz(Conversation conversation) {
         description = "запускает викторину.";
@@ -14,6 +16,11 @@ public class StartQuiz implements ICommand {
         botAnswer = new StringBuilder();
         botAnswer.append("Отличный выбор! Математика -- царица наук!");
         this.conversation = conversation;
+    }
+
+    @Override
+    public State getState() {
+        return state;
     }
 
     @Override

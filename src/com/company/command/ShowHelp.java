@@ -10,6 +10,7 @@ public class ShowHelp implements ICommand {
     private String userRequest;
     private Conversation conversation;
     private HashMap<State, String> botAnswer;
+    private State state = null;
 
     public ShowHelp(Conversation conversation) {
         description = "показывает это сообщение.";
@@ -23,7 +24,7 @@ public class ShowHelp implements ICommand {
         systemCommandsText.append("У меня есть команды:\r\n");
         for (ICommand command : systemCommands.values())
             systemCommandsText.append(getCommandText(command));
-        for (State state : stateAllowedCommands.keySet()){
+        for (State state : stateAllowedCommands.keySet()) {
             StringBuilder text = new StringBuilder(systemCommandsText);
             for (ICommand command : stateAllowedCommands.get(state).values())
                 text.append(getCommandText(command));
@@ -31,8 +32,13 @@ public class ShowHelp implements ICommand {
         }
     }
 
-    private String getCommandText(ICommand command){
+    private String getCommandText(ICommand command) {
         return String.format("%s -- %s", command.getUserRequest(), command.getDescription()) + "\r\n";
+    }
+
+    @Override
+    public State getState() {
+        return state;
     }
 
     @Override
