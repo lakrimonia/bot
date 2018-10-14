@@ -10,17 +10,17 @@ public class CommandHandler {
     private HashMap<State, HashMap<String, ICommand>> stateAllowedCommands;
 
     public CommandHandler(Conversation conversation) {
+        ShowHelp showHelp = new ShowHelp(conversation);
         ICommand[] commands = new ICommand[]{
                 new ConversationExit(conversation),
                 new QuizExit(conversation),
-                new ShowHelp(conversation),
+                showHelp,
                 new StartQuiz(conversation)
         };
         systemCommands = new HashMap<>();
         stateAllowedCommands = new HashMap<>();
         sortCommands(commands);
-        ShowHelp helpCommand = (ShowHelp) systemCommands.get("бот, покажи список команд");
-        helpCommand.createHelpText(systemCommands, stateAllowedCommands);
+        showHelp.createHelpText(systemCommands, stateAllowedCommands);
     }
 
     private void sortCommands(ICommand[] commands) {
