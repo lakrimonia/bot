@@ -30,11 +30,15 @@ public class Quiz {
         StringBuilder answerBuilder = new StringBuilder();
         String rightAnswer = questions.peek().getValue();
         String answer = conversation.tryHandle(message);
-        if (answer != null) return answer;
-
+        if (answer != null) {
+            answerBuilder.append(answer);
+            answerBuilder.append(getQuestion());
+        }
+        else {
         answerBuilder.append(message.equals(rightAnswer)
                 ? countAsRightAnswer(message)
                 : countAsWrongAnswer());
+        }
         return answerBuilder.toString();
 
     }
@@ -61,6 +65,7 @@ public class Quiz {
             result.append(getQuestion());
         } else {
             result.append(topicContent.get("ПРОИГРЫШ"));
+            result.append(String.format("Игра окончена. Твой счёт: %d", getScore()));
             isOver = true;
         }
         return result.toString();

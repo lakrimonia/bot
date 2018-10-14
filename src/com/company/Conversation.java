@@ -27,8 +27,6 @@ public class Conversation {
     public void start() {
         Agent agent = new Agent();
         agent.print(topicContent.get("ПРИВЕТСТВИЕ"));
-        agent.print(topicContent.get("СПРАВКА"));
-        agent.print(topicContent.get("ПРЕДЛОЖЕНИЕ ПОИГРАТЬ"));
 
         while (continueConversation) {
             String message = agent.getMessage();
@@ -73,6 +71,7 @@ public class Conversation {
     }
 
     public void initializeQuiz() {
+    	quiz = new Quiz(questionAnswer, topicContent, this);
         state = State.QUIZ;
     }
 

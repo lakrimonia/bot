@@ -13,7 +13,7 @@ public class ShowHelp implements ICommand {
     private State state = null;
 
     public ShowHelp(Conversation conversation) {
-        description = "показывает это сообщение.";
+        description = "я выведу список команд, которые могу исполнить";
         userRequest = "бот, покажи список команд";
         this.conversation = conversation;
     }

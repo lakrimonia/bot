@@ -15,16 +15,15 @@ class QuizTest {
         Bot bot = new Bot();
         topicContent = bot.topicContent;
         questionAnswer = bot.questionAnswer;
-        Conversation c = new Conversation(topicContent, questionAnswer);
-        CommandHandler ch = new CommandHandler(c);
-        this.quiz = new Quiz(questionAnswer, topicContent, c);
+        Conversation conversation= new Conversation(topicContent, questionAnswer);
+        this.quiz = new Quiz(questionAnswer, topicContent, conversation);
     }
 
     @org.junit.jupiter.api.Test
     void rightAnswerGiven() {
         int initialScore = quiz.getScore();
         int initialTries = quiz.getTries();
-        String question = quiz.handle("");
+        String question = quiz.getQuestion();
         String answer = questionAnswer.get(question);
         String actual = quiz.handle(answer).split("\r\n")[0] + "\r\n";
         assertEquals(String.format(topicContent.get("ВЕРНЫЙ ОТВЕТ"), quiz.getScore()), actual);
@@ -36,10 +35,10 @@ class QuizTest {
     void wrongAnswerGiven() {
         int initialTries = quiz.getTries();
         int initialScore = quiz.getScore();
-        String question = quiz.handle("");
         String answer = "wrong answer";
-        String actual = quiz.handle(answer).split("\r\n")[0] + "\r\n";
-        assertEquals(topicContent.get("НЕВЕРНЫЙ ОТВЕТ"), actual);
+        String actual = quiz.handle(answer).split("\r\n")[0];
+        String a = topicContent.get("НЕВЕРНЫЙ ОТВЕТ").split("\r\n")[0];
+        assertEquals(topicContent.get("НЕВЕРНЫЙ ОТВЕТ").split("\r\n")[0], actual);
         assertTrue(quiz.getScore() == initialScore);
         assertTrue(quiz.getTries() + 1 == initialTries);
     }

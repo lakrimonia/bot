@@ -6,15 +6,14 @@ import com.company.State;
 public class StartQuiz implements ICommand {
     private String description;
     private String userRequest;
-    private StringBuilder botAnswer;
+    private String botAnswer;
     private Conversation conversation;
     private State state = State.INITIAL;
 
     public StartQuiz(Conversation conversation) {
-        description = "запускает викторину.";
-        userRequest = "математика";
-        botAnswer = new StringBuilder();
-        botAnswer.append("Отличный выбор! Математика -- царица наук!");
+        description = "запуск математической викторины.";
+        userRequest = "викторина";
+        botAnswer = "Отличный выбор! Математика -- царица наук!";
         this.conversation = conversation;
     }
 
@@ -35,8 +34,7 @@ public class StartQuiz implements ICommand {
 
     @Override
     public String getBotAnswer() {
-        botAnswer.append(conversation.quiz.getQuestion());
-        return botAnswer.toString();
+        return botAnswer + ("\n" + conversation.quiz.getQuestion());
     }
 
     @Override
