@@ -1,13 +1,12 @@
 package com.company;
 
 import java.util.HashMap;
-import java.util.function.Supplier;
+
 
 public class Conversation {
     private State state;
     public Quiz quiz;
     private CommandHandler commandHandler;
-    private HashMap<String, Supplier<String>> commands;
     private HashMap<String, String> topicContent; // Basic background information
     private HashMap<String, String> questionAnswer;
     public boolean continueConversation;
@@ -16,9 +15,6 @@ public class Conversation {
         quiz = new Quiz(questionAnswer, topicContent, this);
         commandHandler = new CommandHandler(this);
         state = State.INITIAL;
-        commands = new HashMap<>();
-        commands.put("бот, пока", this::sayBye);
-        commands.put("бот, покажи список команд", this::showHelp);
         this.topicContent = topicContent;
         this.questionAnswer = questionAnswer;
         continueConversation = true;
@@ -26,11 +22,11 @@ public class Conversation {
 
     public void start() {
         Agent agent = new Agent();
-        agent.print(topicContent.get("ПРИВЕТСТВИЕ"));
+        agent.sendBotAnswer(topicContent.get("ПРИВЕТСТВИЕ"));
 
         while (continueConversation) {
-            String message = agent.getMessage();
-            agent.print(handle(message));
+            String message = agent.getUserRequest();
+            agent.sendBotAnswer(handle(message));
         }
     }
 
@@ -53,17 +49,6 @@ public class Conversation {
             return topicContent.get("НЕКОРРЕКТНАЯ КОМАНДА");
         }
         return answer;
-    }
-
-    private String sayBye() {
-        continueConversation = false;
-        if (quiz != null)
-            quiz.isOver = true;
-        return topicContent.get("ПРОЩАНИЕ");
-    }
-
-    public String showHelp() {
-        return topicContent.get("СПРАВКА");
     }
 
     public State getState() {

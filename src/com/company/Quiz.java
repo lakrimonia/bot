@@ -32,7 +32,7 @@ public class Quiz {
         String answer = conversation.tryHandle(message);
         if (answer != null) {
             answerBuilder.append(answer);
-            answerBuilder.append(getQuestion());
+            if (!isOver) answerBuilder.append(getQuestion());
         }
         else {
         answerBuilder.append(message.equals(rightAnswer)
