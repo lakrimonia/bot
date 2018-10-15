@@ -12,8 +12,13 @@ public class StartQuiz implements ICommand {
 
     public StartQuiz(Conversation conversation) {
         description = "запуск математической викторины.";
-        userRequest = "викторина";
-        botAnswer = "Отличный выбор! Математика -- царица наук!";
+        userRequest = "бот, викторина";
+        StringBuilder botAnswerSB = new StringBuilder();
+        botAnswerSB.append("Отличный выбор! Математика -- царица наук!\r\n");
+        botAnswerSB.append("Я буду задавать тебе вопросы по определённой теме, а ты будешь отвечать.\r\n");
+        botAnswerSB.append("Ты можешь ответить неправильно не больше 3-х раз.\r\n");
+        botAnswerSB.append("За каждый правильный ответ ты будешь получать 100 очков. Посмотрим, сколько ты наберешь :)\r\n");
+        botAnswer = botAnswerSB.toString();
         this.conversation = conversation;
     }
 

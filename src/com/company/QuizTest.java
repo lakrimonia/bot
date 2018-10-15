@@ -1,9 +1,9 @@
 package com.company;
 
-import java.io.IOException;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class QuizTest {
     private Quiz quiz;
@@ -11,7 +11,7 @@ class QuizTest {
     private HashMap<String, String> questionAnswer;
 
     @org.junit.jupiter.api.BeforeEach
-    void setUp() throws IOException {
+    void setUp() {
         Bot bot = new Bot();
         topicContent = bot.topicContent;
         questionAnswer = bot.questionAnswer;

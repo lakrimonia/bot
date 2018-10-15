@@ -12,8 +12,8 @@ public class QuizExit implements ICommand {
 
     public QuizExit(Conversation conversation) {
         description = "выход из игры.";
-        userRequest = "выход";
-        botAnswer = String.format("Игра окончена. Твой счёт: %d", conversation.quiz.getScore());
+        userRequest = "бот, выход";
+        botAnswer = String.format("Игра окончена. Твой счёт: %d\r\n", conversation.quiz.getScore());
         this.conversation = conversation;
     }
 
