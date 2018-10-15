@@ -37,7 +37,6 @@ class QuizTest {
         int initialScore = quiz.getScore();
         String answer = "wrong answer";
         String actual = quiz.handle(answer).split("\r\n")[0];
-        String a = topicContent.get("НЕВЕРНЫЙ ОТВЕТ").split("\r\n")[0];
         assertEquals(topicContent.get("НЕВЕРНЫЙ ОТВЕТ").split("\r\n")[0], actual);
         assertTrue(quiz.getScore() == initialScore);
         assertTrue(quiz.getTries() + 1 == initialTries);

@@ -13,7 +13,7 @@ public class Quiz {
     public boolean isOver;
     private Conversation conversation;
 
-    public Quiz(HashMap<String, String> questionAnswer, HashMap<String, String> topicContent,
+    Quiz(HashMap<String, String> questionAnswer, HashMap<String, String> topicContent,
                 Conversation conversation) {
         this.conversation = conversation;
         isOver = false;
@@ -26,7 +26,7 @@ public class Quiz {
         }
     }
 
-    public String handle(String message) {
+    String handle(String message) {
         StringBuilder answerBuilder = new StringBuilder();
         String rightAnswer = questions.peek().getValue();
         String answer = conversation.tryHandle(message);
@@ -79,7 +79,7 @@ public class Quiz {
         return score;
     }
 
-    public int getTries() {
+    int getTries() {
         return tries;
     }
 }

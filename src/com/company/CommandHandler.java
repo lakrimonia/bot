@@ -5,11 +5,11 @@ import com.company.command.*;
 import java.util.HashMap;
 
 
-public class CommandHandler {
+class CommandHandler {
     private HashMap<String, ICommand> systemCommands;
     private HashMap<State, HashMap<String, ICommand>> stateAllowedCommands;
 
-    public CommandHandler(Conversation conversation) {
+    CommandHandler(Conversation conversation) {
         ShowHelp showHelp = new ShowHelp(conversation);
         ICommand[] commands = new ICommand[]{
                 new ConversationExit(conversation),
@@ -39,7 +39,7 @@ public class CommandHandler {
         }
     }
 
-    public String tryHandleAsCommand(String message, State state) {
+    String tryHandleAsCommand(String message, State state) {
 
         if (systemCommands.containsKey(message)) {
             return systemCommands.get(message).execute();

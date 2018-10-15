@@ -20,7 +20,7 @@ public class Conversation {
         continueConversation = true;
     }
 
-    public void start() {
+    void start() {
         Agent agent = new Agent();
         agent.sendBotAnswer(topicContent.get("ПРИВЕТСТВИЕ"));
 
@@ -30,7 +30,7 @@ public class Conversation {
         }
     }
 
-    public String handle(String message) {
+    String handle(String message) {
         message = message.toLowerCase();
         String answer = null;
 
@@ -60,7 +60,7 @@ public class Conversation {
         state = State.QUIZ;
     }
 
-    public String tryHandle(String message) {
+    String tryHandle(String message) {
         return commandHandler.tryHandleAsCommand(message, state);
     }
 }

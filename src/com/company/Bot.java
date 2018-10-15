@@ -1,13 +1,15 @@
 package com.company;
 
-import java.io.*;
-import java.util.HashMap;
 
-public class Bot {
+import java.io.File;
+import java.util.HashMap;
+import java.util.Scanner;
+
+class Bot {
     HashMap<String, String> topicContent;
     HashMap<String, String> questionAnswer;
 
-    public Bot() throws IOException {
+    Bot() {
         topicContent = new HashMap<>();
         this.questionAnswer = new HashMap<>();
         String[] lines = getText("topics.txt");
@@ -16,7 +18,7 @@ public class Bot {
                 String topic = lines[i].substring(1);
                 StringBuilder content = new StringBuilder();
                 i++;
-                while (!lines[i].equals("")) {
+                while (i < lines.length && !lines[i].equals("")) {
                     content.append(lines[i]);
                     content.append("\r\n");
                     i++;
@@ -27,7 +29,7 @@ public class Bot {
 
         lines = getText("questions.txt");
         for (int i = 1; i < lines.length - 1; i++) {
-            while (!lines[i].equals("")) {
+            while (i < lines.length && !lines[i].equals("")) {
                 String[] question_answer = lines[i].split("--");
                 this.questionAnswer.put(question_answer[0], question_answer[1]);
                 i++;
@@ -35,17 +37,21 @@ public class Bot {
         }
     }
 
-    private String[] getText(String name) throws IOException {
+    private String[] getText(String name) {
         File file = new File(name);
-        char[] c = new char[(int) file.length()];
-        try (Reader reader = new InputStreamReader(new FileInputStream(file), "UTF-8")) {
-            reader.read(c);
+        StringBuilder data = new StringBuilder();
+        try {
+            Scanner in = new Scanner(file);
+            while (in.hasNext())
+                data.append(in.nextLine()).append("\r\n");
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        String str = new String(c);
+        String str = data.toString();
         return str.split("\r\n");
     }
 
-    public void start() {
+    void start() {
         Conversation conversation = new Conversation(topicContent, questionAnswer);
         conversation.start();
     }
