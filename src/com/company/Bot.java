@@ -5,11 +5,11 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Scanner;
 
-class Bot {
+public class Bot {
     HashMap<String, String> topicContent;
     HashMap<String, String> questionAnswer;
 
-    Bot() {
+    public Bot() {
         topicContent = new HashMap<>();
         this.questionAnswer = new HashMap<>();
         String[] lines = getText("topics.txt");
