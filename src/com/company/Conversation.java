@@ -18,6 +18,7 @@ public class Conversation {
         this.topicContent = topicContent;
         this.questionAnswer = questionAnswer;
         continueConversation = true;
+        
     }
 
     void start() {

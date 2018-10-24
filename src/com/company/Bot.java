@@ -8,10 +8,12 @@ import java.util.Scanner;
 public class Bot {
     HashMap<String, String> topicContent;
     HashMap<String, String> questionAnswer;
+    HashMap<String, Conversation> conversations;
 
     public Bot() {
         topicContent = new HashMap<>();
         this.questionAnswer = new HashMap<>();
+        conversations = new HashMap<>();
         String[] lines = getText("topics.txt");
         for (int i = 0; i < lines.length - 1; i++) {
             if (lines[i].charAt(0) == '#') {
@@ -54,5 +56,12 @@ public class Bot {
     void start() {
         Conversation conversation = new Conversation(topicContent, questionAnswer);
         conversation.start();
+    }
+    
+   public String handleMessage (String message, String chatId) {
+	   if (!conversations.containsKey(chatId)) {
+		   conversations.put(chatId, new Conversation(topicContent, questionAnswer));
+	   }
+	   return conversations.get(chatId).handle(message);
     }
 }
