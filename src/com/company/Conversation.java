@@ -21,15 +21,6 @@ public class Conversation {
         
     }
 
-    void start() {
-        Agent agent = new Agent();
-        agent.sendBotAnswer(topicContent.get("ПРИВЕТСТВИЕ"));
-
-        while (continueConversation) {
-            String message = agent.getUserRequest();
-            agent.sendBotAnswer(handle(message));
-        }
-    }
 
     String handle(String message) {
         message = message.toLowerCase();

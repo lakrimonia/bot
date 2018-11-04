@@ -42,22 +42,18 @@ public class Bot {
     private String[] getText(String name) {
         File file = new File(name);
         StringBuilder data = new StringBuilder();
-        try {
-            Scanner in = new Scanner(file);
+        try(Scanner in = new Scanner(file)) {
             while (in.hasNext())
                 data.append(in.nextLine()).append("\r\n");
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
+        } 
+        
+        
         String str = data.toString();
         return str.split("\r\n");
     }
-
-    void start() {
-        Conversation conversation = new Conversation(topicContent, questionAnswer);
-        conversation.start();
-    }
-    
+ 
    public String handleMessage (String message, String chatId) {
 	   if (!conversations.containsKey(chatId)) {
 		   conversations.put(chatId, new Conversation(topicContent, questionAnswer));
