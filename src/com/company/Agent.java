@@ -9,9 +9,8 @@ class Agent {
     }
 
     String getUserRequest() {
-       try(Scanner scan = new Scanner(System.in)){
+       Scanner scan = new Scanner(System.in);
         return scan.nextLine();
-       }
     }
 
 }
