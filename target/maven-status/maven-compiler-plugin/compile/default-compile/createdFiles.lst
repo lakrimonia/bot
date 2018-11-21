@@ -1,0 +1,14 @@
+com\company\Conversation.class
+ru\thematdev\bot\TelegramBot.class
+com\company\command\QuizExit.class
+com\company\CommandHandler.class
+com\company\Quiz.class
+com\company\command\StartQuiz.class
+com\company\Conversation$1.class
+com\company\Bot.class
+com\company\State.class
+com\company\Main.class
+com\company\command\ShowHelp.class
+com\company\command\ICommand.class
+com\company\Agent.class
+com\company\command\ConversationExit.class
