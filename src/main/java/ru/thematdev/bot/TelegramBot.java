@@ -11,13 +11,19 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.FileHandler;
 
 
 public class TelegramBot extends TelegramLongPollingBot {
     private static final String botUserName = "adsg_bot";
     private static final String token = "626697956:AAHw8x9DRymWKaN9ZE0szWuxP264S1JdsTE";
     private Bot bot = new Bot();
+    private static Logger log = Logger.getLogger(TelegramBot.class.getName());
+    
 
     @Override
     public String getBotUsername() {
@@ -39,7 +45,6 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     private synchronized void sendMsg(String chatId, String s) {
-
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId);
         sendMessage.setText(s);
@@ -66,11 +71,17 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     public static void main(String[] args) {
         ApiContextInitializer.init();
+        try {
+    		FileHandler fh = new FileHandler("log//TLogApp");
+    		log.addHandler(fh);
+    	} catch (IOException e) {
+    		log.log(Level.SEVERE, "/n Exeption:", e);
+    	}
         TelegramBotsApi botApi = new TelegramBotsApi();
         try {
             botApi.registerBot(new TelegramBot());
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+        	log.log(Level.SEVERE, "Exception: ", e);
         }
     }
 

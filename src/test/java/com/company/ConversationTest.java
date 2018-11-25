@@ -22,13 +22,13 @@ class ConversationTest {
     @org.junit.jupiter.api.Test
     void testState() {
         assertEquals(State.INITIAL, conversation.getState());
-        conversation.handle("викторина");
+        conversation.handle("бот, викторина");
         assertEquals(State.QUIZ, conversation.getState());
     }
 
     @org.junit.jupiter.api.Test
     void testStateInitial() {
-        conversation.handle("викторина");
+        conversation.handle("бот, викторина");
         assertEquals(State.QUIZ, conversation.getState());
         for (int i = 0; i < 3; i++) {
             conversation.handle("Не знаю");
@@ -39,7 +39,7 @@ class ConversationTest {
     @org.junit.jupiter.api.Test
     void testUppercase() {
         assertEquals(State.INITIAL, conversation.getState());
-        conversation.handle("ВИКТОРИНА");
+        conversation.handle("БОТ, ВИКТОРИНА");
         assertEquals(State.QUIZ, conversation.getState());
     }
 
