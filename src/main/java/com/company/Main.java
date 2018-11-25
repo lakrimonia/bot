@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.util.logging.FileHandler;
 
 
-
-
 public class Main {
 	
 	private static Logger logger = Logger.getLogger(Main.class.getName());
@@ -31,10 +29,9 @@ public class Main {
         		String answer = bot.handleMessage(message, chatId);
         		agent.sendBotAnswer(answer);
         	} catch (Exception e) {
-        		logger.log(Level.SEVERE, "/n Exeption:", e);
+        		logger.log(Level.SEVERE, "Exeption:", e);
         		throw e;
-        	}
-        	
+        	}  	
         }
     }
 }

@@ -41,7 +41,6 @@ public class TelegramBot extends TelegramLongPollingBot {
         String chatId = update.getMessage().getChatId().toString();
         String botAnswer = bot.handleMessage(message, chatId);
         sendMsg(chatId, botAnswer);
-
     }
 
     private synchronized void sendMsg(String chatId, String s) {
@@ -75,7 +74,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     		FileHandler fh = new FileHandler("log//TLogApp");
     		log.addHandler(fh);
     	} catch (IOException e) {
-    		log.log(Level.SEVERE, "/n Exeption:", e);
+    		log.log(Level.SEVERE, "Exeption:", e);
     	}
         TelegramBotsApi botApi = new TelegramBotsApi();
         try {
