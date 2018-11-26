@@ -2,13 +2,16 @@ package com.company;
 
 import java.util.HashMap;
 
-
+//TODO
 public class Conversation {
     private State state;
+
+    //TODO наверное, выставлять поля наружу не самая лучшая идея
     public Quiz quiz;
     private CommandHandler commandHandler;
     private HashMap<String, String> topicContent; // Basic background information
     private HashMap<String, String> questionAnswer;
+    //TODO наверное, выставлять поля наружу не самая лучшая идея
     public boolean continueConversation;
 
     public Conversation(HashMap<String, String> topicContent, HashMap<String, String> questionAnswer) {

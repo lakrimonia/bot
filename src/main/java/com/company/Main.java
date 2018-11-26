@@ -1,17 +1,14 @@
 package com.company;
 
+import java.io.IOException;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import ru.thematdev.bot.TelegramBot;
-
-import java.io.IOException;
-import java.util.logging.FileHandler;
-
 
 public class Main {
-	
 	private static Logger logger = Logger.getLogger(Main.class.getName());
+
     public static void main(String[] args)  {
     	try {
     		FileHandler fh = new FileHandler("log//LogApp");

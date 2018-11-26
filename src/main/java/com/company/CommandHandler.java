@@ -5,6 +5,7 @@ import com.company.command.*;
 import java.util.HashMap;
 
 
+//TODO Где модификаторы доступа?
 class CommandHandler {
     private HashMap<String, ICommand> systemCommands;
     private HashMap<State, HashMap<String, ICommand>> stateAllowedCommands;
@@ -23,6 +24,7 @@ class CommandHandler {
         showHelp.createHelpText(systemCommands, stateAllowedCommands);
     }
 
+    //TODO Не очень хорошее название метода
     private void sortCommands(ICommand[] commands) {
         for (ICommand command : commands) {
             State state = command.getState();
@@ -39,6 +41,7 @@ class CommandHandler {
         }
     }
 
+    //TODO Где модификаторы доступа?
     String tryHandleAsCommand(String message, State state) {
 
         if (systemCommands.containsKey(message)) {

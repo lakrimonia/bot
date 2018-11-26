@@ -2,6 +2,8 @@ package com.company;
 
 import java.util.Scanner;
 
+
+//TODO Где модификаторы доступа?
 class Agent {
 
     void sendBotAnswer(String message) {

@@ -18,6 +18,7 @@ public class ShowHelp implements ICommand {
         this.conversation = conversation;
     }
 
+    //TODO проиницилизируйте в конструкторе
     public void createHelpText(HashMap<String, ICommand> systemCommands, HashMap<State, HashMap<String, ICommand>> stateAllowedCommands) {
         botAnswer = new HashMap<>();
         StringBuilder systemCommandsText = new StringBuilder();

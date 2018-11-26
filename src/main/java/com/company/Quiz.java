@@ -3,6 +3,7 @@ package com.company;
 import java.util.HashMap;
 import java.util.Stack;
 
+//TODO Где модификаторы доступа?
 public class Quiz {
     private int score;
     private int tries;

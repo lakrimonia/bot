@@ -6,11 +6,13 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Bot {
+    //TODO Где модификаторы доступа?
     HashMap<String, String> topicContent;
     HashMap<String, String> questionAnswer;
     HashMap<String, Conversation> conversations;
 
     public Bot() {
+        //TODO Я бы вынес чтение файлов из конструктора
         topicContent = new HashMap<>();
         this.questionAnswer = new HashMap<>();
         conversations = new HashMap<>();
