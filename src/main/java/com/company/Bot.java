@@ -5,6 +5,9 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Scanner;
 
+//TODO Надо логику чтения файлов и само знание о том, из какого файла читать вынести отсюда
+//TODO Тесты, которые используют бота, не должны читать данные из файлов(это как сделано сейчас)
+
 public class Bot {
     //TODO Где модификаторы доступа?
     HashMap<String, String> topicContent;
