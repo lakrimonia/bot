@@ -1,24 +1,16 @@
 package com.company;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import ru.thematdev.bot.TelegramBot;
-
-import java.io.IOException;
-import java.util.logging.FileHandler;
-
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.apache.log4j.xml.DOMConfigurator;
 
 public class Main {
 	
-	private static Logger logger = Logger.getLogger(Main.class.getName());
+	private static Logger rootLogger = Logger.getLogger(Main.class.getName());
+	
+
     public static void main(String[] args)  {
-    	try {
-    		FileHandler fh = new FileHandler("log//LogApp");
-    		logger.addHandler(fh);
-    	} catch (IOException e) {
-    		logger.log(Level.SEVERE, "/n Exeption:", e);
-    	}
+    	DOMConfigurator.configure("log.xml");
         Bot bot = new Bot();
         Conversation conversation = new Conversation(bot.topicContent, bot.questionAnswer);
         String chatId = "000";
@@ -29,7 +21,7 @@ public class Main {
         		String answer = bot.handleMessage(message, chatId);
         		agent.sendBotAnswer(answer);
         	} catch (Exception e) {
-        		logger.log(Level.SEVERE, "Exeption:", e);
+        		rootLogger.log(Level.ERROR, "Exeption:", e);
         		throw e;
         	}  	
         }

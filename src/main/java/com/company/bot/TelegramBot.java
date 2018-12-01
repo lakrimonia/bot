@@ -1,4 +1,4 @@
-package ru.thematdev.bot;
+package com.company.bot;
 
 import com.company.Bot;
 import org.telegram.telegrambots.ApiContextInitializer;
@@ -11,18 +11,19 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.FileHandler;
+import org.apache.log4j.Logger;
+import org.apache.log4j.Level;
+import org.apache.log4j.xml.DOMConfigurator;
+
 
 
 public class TelegramBot extends TelegramLongPollingBot {
     private static final String botUserName = "adsg_bot";
     private static final String token = "626697956:AAHw8x9DRymWKaN9ZE0szWuxP264S1JdsTE";
     private Bot bot = new Bot();
-    private static Logger log = Logger.getLogger(TelegramBot.class.getName());
+    private static Logger logger = Logger.getLogger(TelegramBot.class.getName());
+
     
 
     @Override
@@ -51,7 +52,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+        	logger.log(Level.ERROR, "Exeption:", e);
         }
     }
 
@@ -69,18 +70,15 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     public static void main(String[] args) {
+    	DOMConfigurator.configure("log.xml");
         ApiContextInitializer.init();
-        try {
-    		FileHandler fh = new FileHandler("log//TLogApp");
-    		log.addHandler(fh);
-    	} catch (IOException e) {
-    		log.log(Level.SEVERE, "Exeption:", e);
-    	}
+        Logger rootLogger = Logger.getLogger(TelegramBot.class.getName());
+        
         TelegramBotsApi botApi = new TelegramBotsApi();
         try {
             botApi.registerBot(new TelegramBot());
         } catch (TelegramApiException e) {
-        	log.log(Level.SEVERE, "Exception: ", e);
+        	rootLogger.log(Level.ERROR, "Exeption:", e);
         }
     }
 
