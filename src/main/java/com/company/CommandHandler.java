@@ -10,20 +10,18 @@ class CommandHandler {
     private HashMap<State, HashMap<String, ICommand>> stateAllowedCommands;
 
     CommandHandler(Conversation conversation) {
-        ShowHelp showHelp = new ShowHelp(conversation);
+        systemCommands = new HashMap<>();
+        stateAllowedCommands = new HashMap<>();
         ICommand[] commands = new ICommand[]{
                 new ConversationExit(conversation),
                 new QuizExit(conversation),
-                showHelp,
+                new ShowHelp(conversation, systemCommands, stateAllowedCommands),
                 new StartQuiz(conversation)
         };
-        systemCommands = new HashMap<>();
-        stateAllowedCommands = new HashMap<>();
-        sortCommands(commands);
-        showHelp.createHelpText(systemCommands, stateAllowedCommands);
+        groupCommands(commands);
     }
 
-    private void sortCommands(ICommand[] commands) {
+    private void groupCommands(ICommand[] commands) {
         for (ICommand command : commands) {
             State state = command.getState();
             if (state == null)

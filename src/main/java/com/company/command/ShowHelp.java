@@ -9,27 +9,16 @@ public class ShowHelp implements ICommand {
     private String description;
     private String userRequest;
     private Conversation conversation;
-    private HashMap<State, String> botAnswer;
     private State state = null;
+    private HashMap<String, ICommand> systemCommands;
+    private HashMap<State, HashMap<String, ICommand>> stateAllowedCommands;
 
-    public ShowHelp(Conversation conversation) {
+    public ShowHelp(Conversation conversation, HashMap<String, ICommand> systemCommands, HashMap<State, HashMap<String, ICommand>> stateAllowedCommands) {
         description = "я выведу список команд, которые могу исполнить";
         userRequest = "бот, покажи список команд";
         this.conversation = conversation;
-    }
-
-    public void createHelpText(HashMap<String, ICommand> systemCommands, HashMap<State, HashMap<String, ICommand>> stateAllowedCommands) {
-        botAnswer = new HashMap<>();
-        StringBuilder systemCommandsText = new StringBuilder();
-        systemCommandsText.append("У меня есть команды:\r\n");
-        for (ICommand command : systemCommands.values())
-            systemCommandsText.append(getCommandText(command));
-        for (State state : stateAllowedCommands.keySet()) {
-            StringBuilder text = new StringBuilder(systemCommandsText);
-            for (ICommand command : stateAllowedCommands.get(state).values())
-                text.append(getCommandText(command));
-            botAnswer.put(state, text.toString());
-        }
+        this.systemCommands = systemCommands;
+        this.stateAllowedCommands = stateAllowedCommands;
     }
 
     private String getCommandText(ICommand command) {
@@ -53,7 +42,13 @@ public class ShowHelp implements ICommand {
 
     @Override
     public String getBotAnswer() {
-        return botAnswer.get(conversation.getState());
+        StringBuilder result = new StringBuilder();
+        result.append("У меня есть команды:\r\n");
+        for (ICommand command : systemCommands.values())
+            result.append(getCommandText(command));
+        for (ICommand command : stateAllowedCommands.get(conversation.getState()).values())
+            result.append(getCommandText(command));
+        return result.toString();
     }
 
     @Override
