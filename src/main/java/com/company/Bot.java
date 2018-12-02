@@ -1,63 +1,31 @@
 package com.company;
 
-
-import java.io.File;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class Bot {
-    HashMap<String, String> topicContent;
-    HashMap<String, String> questionAnswer;
-    HashMap<String, Conversation> conversations;
+	private HashMap<String, String> topicContent;
+	private HashMap<String, String> questionAnswer;
+	private HashMap<String, Conversation> conversations;
 
-    public Bot() {
-        topicContent = new HashMap<>();
-        this.questionAnswer = new HashMap<>();
-        conversations = new HashMap<>();
-        String[] lines = getText("topics.txt");
-        for (int i = 0; i < lines.length - 1; i++) {
-            if (lines[i].charAt(0) == '#') {
-                String topic = lines[i].substring(1);
-                StringBuilder content = new StringBuilder();
-                i++;
-                while (i < lines.length && !lines[i].equals("")) {
-                    content.append(lines[i]);
-                    content.append("\r\n");
-                    i++;
-                }
-                this.topicContent.put(topic, content.toString());
-            }
-        }
+	public Bot(HashMap<String, String> topicContent, HashMap<String, String> questionAnswer) {
+		this.topicContent = topicContent;
+		this.questionAnswer = questionAnswer;
+		conversations = new HashMap<>();
 
-        lines = getText("questions.txt");
-        for (int i = 1; i < lines.length - 1; i++) {
-            while (i < lines.length && !lines[i].equals("")) {
-                String[] question_answer = lines[i].split("--");
-                this.questionAnswer.put(question_answer[0], question_answer[1]);
-                i++;
-            }
-        }
-    }
+	}
 
-    private String[] getText(String name) {
-        File file = new File(name);
-        StringBuilder data = new StringBuilder();
-        try(Scanner in = new Scanner(file)) {
-            while (in.hasNext())
-                data.append(in.nextLine()).append("\r\n");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } 
-        
-        
-        String str = data.toString();
-        return str.split("\r\n");
-    }
- 
-   public String handleMessage (String message, String chatId) {
-	   if (!conversations.containsKey(chatId)) {
-		   conversations.put(chatId, new Conversation(topicContent, questionAnswer));
-	   }
-	   return conversations.get(chatId).handle(message);
-    }
+	public String handleMessage(String message, String chatId) {
+		if (!conversations.containsKey(chatId)) {
+			conversations.put(chatId, new Conversation(topicContent, questionAnswer));
+		}
+		return conversations.get(chatId).handle(message);
+	}
+
+	public HashMap<String, String> getTopicContent() {
+		return topicContent;
+	}
+
+	public HashMap<String, String> getQuestionAnswer() {
+		return questionAnswer;
+	}
 }

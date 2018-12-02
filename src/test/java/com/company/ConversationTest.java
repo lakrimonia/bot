@@ -2,20 +2,30 @@ package com.company;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.HashMap;
+
 class ConversationTest {
     private Bot bot;
     private Conversation conversation;
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
-        bot = new Bot();
-        conversation = new Conversation(bot.topicContent, bot.questionAnswer);
+    	HashMap<String, String> topicContent = new HashMap<String, String>();
+    	topicContent.put("НЕКОРРЕКТНАЯ КОМАНДА", "Извини, я плохо понял тебя.");
+    	topicContent.put("НЕВЕРНЫЙ ОТВЕТ", "Неверно!");
+    	topicContent.put("ВЕРНЫЙ ОТВЕТ", "Верно!");
+    	topicContent.put("КОЛИЧЕСТВО ПОПЫТОК", "Количество оставшихся попыток: %d");
+    	topicContent.put("ПРОЩАНИЕ", "Пока! Жду нашей встречи!\r\n");
+    	HashMap<String, String> questionAnswer = new HashMap<String, String>();
+    	questionAnswer.put("10 + 10 = ?", "20");
+        bot = new Bot(topicContent, questionAnswer);
+        conversation = new Conversation(bot.getTopicContent(), bot.getQuestionAnswer());
     }
 
     @org.junit.jupiter.api.Test
     void testIncorrect() {
         String botAnswer = conversation.handle("АБВГД");
-        String expected = bot.topicContent.get("НЕКОРРЕКТНАЯ КОМАНДА");
+        String expected = bot.getTopicContent().get("НЕКОРРЕКТНАЯ КОМАНДА");
         assertEquals(expected, botAnswer);
     }
 
@@ -46,7 +56,7 @@ class ConversationTest {
     @org.junit.jupiter.api.Test
     void testBye() {
         String botAnswer = conversation.handle("бот, пока");
-        String expected = bot.topicContent.get("ПРОЩАНИЕ");
+        String expected = bot.getTopicContent().get("ПРОЩАНИЕ");
         assertEquals(expected, botAnswer);
     }
 
