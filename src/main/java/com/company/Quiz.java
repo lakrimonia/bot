@@ -9,7 +9,7 @@ public class Quiz {
     private Stack<String> questions;
     private HashMap<String, String> questionAnswer;
     private HashMap<String, String> topicContent;
-    public boolean isOver;
+    private boolean isOver;
     private Conversation conversation;
 
     Quiz(HashMap<String, String> questionAnswer, HashMap<String, String> topicContent,
@@ -33,8 +33,7 @@ public class Quiz {
         if (answer != null) {
             answerBuilder.append(answer);
             if (!isOver) answerBuilder.append(getQuestion());
-        }
-        else {
+        } else {
             answerBuilder.append(message.equals(rightAnswer)
                     ? countAsRightAnswer()
                     : countAsWrongAnswer());
@@ -81,5 +80,13 @@ public class Quiz {
 
     int getTries() {
         return tries;
+    }
+
+    public boolean getIsOver() {
+        return isOver;
+    }
+
+    public void stop() {
+        isOver = true;
     }
 }

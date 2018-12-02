@@ -39,7 +39,7 @@ public class StartQuiz implements ICommand {
 
     @Override
     public String getBotAnswer() {
-        return botAnswer + ("\n" + conversation.quiz.getQuestion());
+        return botAnswer + ("\n" + conversation.getQuiz().getQuestion());
     }
 
     @Override

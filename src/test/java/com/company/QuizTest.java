@@ -15,7 +15,7 @@ class QuizTest {
         Bot bot = new Bot();
         topicContent = bot.topicContent;
         questionAnswer = bot.questionAnswer;
-        Conversation conversation= new Conversation(topicContent, questionAnswer);
+        Conversation conversation = new Conversation(topicContent, questionAnswer);
         this.quiz = new Quiz(questionAnswer, topicContent, conversation);
     }
 
@@ -47,7 +47,7 @@ class QuizTest {
         int questionsCount = questionAnswer.size();
         for (int i = 0; i < questionsCount; i++)
             rightAnswerGiven();
-        assertTrue(quiz.isOver);
+        assertTrue(quiz.getIsOver());
     }
 
     @org.junit.jupiter.api.Test
@@ -55,6 +55,6 @@ class QuizTest {
         int tries = 3;
         for (int i = 0; i < tries; i++)
             wrongAnswerGiven();
-        assertTrue(quiz.isOver);
+        assertTrue(quiz.getIsOver());
     }
 }

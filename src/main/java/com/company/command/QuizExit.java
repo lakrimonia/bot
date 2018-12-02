@@ -13,7 +13,7 @@ public class QuizExit implements ICommand {
     public QuizExit(Conversation conversation) {
         description = "выход из игры.";
         userRequest = "бот, выход";
-        botAnswer = String.format("Игра окончена. Твой счёт: %d\r\n", conversation.quiz.getScore());
+        botAnswer = String.format("Игра окончена. Твой счёт: %d\r\n", conversation.getQuiz().getScore());
         this.conversation = conversation;
     }
 
@@ -39,7 +39,7 @@ public class QuizExit implements ICommand {
 
     @Override
     public String execute() {
-        conversation.quiz.isOver = true;
+        conversation.getQuiz().stop();
         return getBotAnswer();
     }
 }

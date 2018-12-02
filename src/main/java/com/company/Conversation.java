@@ -5,11 +5,11 @@ import java.util.HashMap;
 
 public class Conversation {
     private State state;
-    public Quiz quiz;
+    private Quiz quiz;
     private CommandHandler commandHandler;
     private HashMap<String, String> topicContent; // Basic background information
     private HashMap<String, String> questionAnswer;
-    public boolean continueConversation;
+    private boolean continueConversation;
 
     public Conversation(HashMap<String, String> topicContent, HashMap<String, String> questionAnswer) {
         quiz = new Quiz(questionAnswer, topicContent, this);
@@ -31,7 +31,7 @@ public class Conversation {
                 break;
             case QUIZ:
                 answer = quiz.handle(message);
-                if (quiz.isOver) {
+                if (quiz.getIsOver()) {
                     state = State.INITIAL;
                 }
         }
@@ -47,11 +47,25 @@ public class Conversation {
     }
 
     public void initializeQuiz() {
-    	quiz = new Quiz(questionAnswer, topicContent, this);
+        quiz = new Quiz(questionAnswer, topicContent, this);
         state = State.QUIZ;
     }
 
     String tryHandle(String message) {
         return commandHandler.tryHandleAsCommand(message, state);
+    }
+
+    public Quiz getQuiz() {
+        return quiz;
+    }
+
+    boolean getContinueConversation() {
+        return continueConversation;
+    }
+
+    public void stop() {
+        if (quiz != null)
+            quiz.stop();
+        continueConversation = false;
     }
 }

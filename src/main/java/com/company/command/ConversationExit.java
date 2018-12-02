@@ -39,9 +39,7 @@ public class ConversationExit implements ICommand {
 
     @Override
     public String execute() {
-        conversation.continueConversation = false;
-        if (conversation.quiz != null)
-            conversation.quiz.isOver = true;
+        conversation.stop();
         return getBotAnswer();
     }
 }
