@@ -1,8 +1,8 @@
 package com.company;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.HashMap;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ConversationTest {
     private Bot bot;
@@ -10,14 +10,14 @@ class ConversationTest {
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
-    	HashMap<String, String> topicContent = new HashMap<String, String>();
-    	topicContent.put("НЕКОРРЕКТНАЯ КОМАНДА", "Извини, я плохо понял тебя.");
-    	topicContent.put("НЕВЕРНЫЙ ОТВЕТ", "Неверно!");
-    	topicContent.put("ВЕРНЫЙ ОТВЕТ", "Верно!");
-    	topicContent.put("КОЛИЧЕСТВО ПОПЫТОК", "Количество оставшихся попыток: %d");
-    	topicContent.put("ПРОЩАНИЕ", "Пока! Жду нашей встречи!\r\n");
-    	HashMap<String, String> questionAnswer = new HashMap<String, String>();
-    	questionAnswer.put("10 + 10 = ?", "20");
+        HashMap<String, String> topicContent = new HashMap<String, String>();
+        topicContent.put("НЕКОРРЕКТНАЯ КОМАНДА", "Извини, я плохо понял тебя.");
+        topicContent.put("НЕВЕРНЫЙ ОТВЕТ", "Неверно!");
+        topicContent.put("ВЕРНЫЙ ОТВЕТ", "Верно!");
+        topicContent.put("КОЛИЧЕСТВО ПОПЫТОК", "Количество оставшихся попыток: %d");
+        topicContent.put("ПРОЩАНИЕ", "Пока! Жду нашей встречи!\r\n");
+        HashMap<String, String> questionAnswer = new HashMap<String, String>();
+        questionAnswer.put("10 + 10 = ?", "20");
         bot = new Bot(topicContent, questionAnswer);
         conversation = new Conversation(bot.getTopicContent(), bot.getQuestionAnswer());
     }

@@ -9,7 +9,7 @@ class Agent {
     }
 
     String getUserRequest() {
-       Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         return scan.nextLine();
     }
 

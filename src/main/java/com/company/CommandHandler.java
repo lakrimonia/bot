@@ -13,7 +13,7 @@ class CommandHandler {
         systemCommands = new HashMap<>();
         stateAllowedCommands = new HashMap<>();
         ICommand[] commands = new ICommand[]{
-                new ConversationExit(conversation),
+                new ConversationExit(),
                 new QuizExit(conversation),
                 new ShowHelp(conversation, systemCommands, stateAllowedCommands),
                 new StartQuiz(conversation)

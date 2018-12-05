@@ -9,15 +9,13 @@ public class Conversation {
     private CommandHandler commandHandler;
     private HashMap<String, String> topicContent; // Basic background information
     private HashMap<String, String> questionAnswer;
-    private boolean continueConversation;
 
-    public Conversation(HashMap<String, String> topicContent, HashMap<String, String> questionAnswer) {
+    Conversation(HashMap<String, String> topicContent, HashMap<String, String> questionAnswer) {
         quiz = new Quiz(questionAnswer, topicContent, this);
         commandHandler = new CommandHandler(this);
         state = State.INITIAL;
         this.topicContent = topicContent;
         this.questionAnswer = questionAnswer;
-        continueConversation = true;
     }
 
 
@@ -57,15 +55,5 @@ public class Conversation {
 
     public Quiz getQuiz() {
         return quiz;
-    }
-
-    boolean getContinueConversation() {
-        return continueConversation;
-    }
-
-    public void stop() {
-        if (quiz != null)
-            quiz.stop();
-        continueConversation = false;
     }
 }
