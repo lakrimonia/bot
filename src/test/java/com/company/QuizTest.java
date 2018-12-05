@@ -9,12 +9,15 @@ class QuizTest {
     private Quiz quiz;
     private HashMap<String, String> topicContent;
     private HashMap<String, String> questionAnswer;
-    private Reader reader = new Reader();
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
-        topicContent = reader.makeTopicContent();
-        questionAnswer = reader.makeQuestionAnswer();
+        topicContent = new HashMap<String, String>();
+        topicContent.put("НЕВЕРНЫЙ ОТВЕТ", "Неверно!\r\n");
+        topicContent.put("ВЕРНЫЙ ОТВЕТ", "Верно! Ты получаешь 100 очков. Твой счёт: %d\r\n");
+        topicContent.put("КОЛИЧЕСТВО ПОПЫТОК", "Количество оставшихся попыток: %d");
+        questionAnswer = new HashMap<String, String>();
+        questionAnswer.put("10 + 10 = ?", "20");
         Conversation conversation = new Conversation(topicContent, questionAnswer);
         this.quiz = new Quiz(questionAnswer, topicContent, conversation);
     }

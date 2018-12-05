@@ -1,6 +1,7 @@
 package com.company;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -45,7 +46,7 @@ public class Reader {
         try (Scanner in = new Scanner(file)) {
             while (in.hasNext())
                 data.append(in.nextLine()).append("\r\n");
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
         String str = data.toString();
