@@ -7,11 +7,6 @@ import java.util.HashMap;
 public class ReaderTest {
 	private Reader reader = new Reader();
 
-	@org.junit.jupiter.api.BeforeEach
-	void setUp() {
-
-	}
-
 	@org.junit.jupiter.api.Test
 	void makeTopicContent() {
 		HashMap<String, String> topicContent = reader.makeTopicContent();
