@@ -4,13 +4,14 @@ import java.util.Scanner;
 
 class Agent {
 
-    void sendBotAnswer(String message) {
-        System.out.println(message);
-    }
+	private Scanner scan;
 
-    String getUserRequest() {
-        Scanner scan = new Scanner(System.in);
-        return scan.nextLine();
-    }
+	void sendBotAnswer(String message) {
+		System.out.println(message);
+	}
 
+	String getUserRequest() {
+    	scan = new Scanner(System.in);
+		return scan.nextLine();
+	}
 }

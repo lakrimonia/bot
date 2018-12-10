@@ -4,8 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 
 public class Reader {
+	private static Logger logger = Logger.getLogger(Reader.class.getName());
 
     public HashMap<String, String> makeTopicContent() {
         HashMap<String, String> topicContent = new HashMap<>();
@@ -47,7 +51,7 @@ public class Reader {
             while (in.hasNext())
                 data.append(in.nextLine()).append("\r\n");
         } catch (IOException ex) {
-            ex.printStackTrace();
+        	logger.log(Level.ERROR, "Exeption:", ex);
         }
         String str = data.toString();
         return str.split("\r\n");
