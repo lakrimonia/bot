@@ -42,6 +42,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         sendMsg(chatId, botAnswer);
     }
 
+    //TODO Не очень понят, зачем тут нужен synchronized
     private synchronized void sendMsg(String chatId, String s) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId);

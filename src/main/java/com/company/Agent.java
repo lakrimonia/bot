@@ -11,6 +11,7 @@ class Agent {
 	}
 
 	String getUserRequest() {
+		//TODO А зачем каждый раз создается scanner?!
     	scan = new Scanner(System.in);
 		return scan.nextLine();
 	}

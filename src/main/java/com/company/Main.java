@@ -21,7 +21,8 @@ public class Main {
                 String answer = bot.handleMessage(message, chatId);
                 agent.sendBotAnswer(answer);
             } catch (Exception e) {
-                rootLogger.log(Level.ERROR, "Exeption:", e);
+                rootLogger.log(Level.ERROR, "Exception:", e);
+                //TODO Может быть не пробрасывать исключение, а подключить Console аппендер, который будет выводить в err?
                 throw e;
             }
         }
