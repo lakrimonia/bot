@@ -21,11 +21,11 @@ public class Bot {
         return conversations.get(chatId).handle(message);
     }
 
-    HashMap<String, String> getTopicContent() {
+    public HashMap<String, String> getTopicContent() {
         return topicContent;
     }
 
-    HashMap<String, String> getQuestionAnswer() {
+    public HashMap<String, String> getQuestionAnswer() {
         return questionAnswer;
     }
 }

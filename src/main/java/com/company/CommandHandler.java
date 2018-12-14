@@ -9,7 +9,7 @@ class CommandHandler {
     private HashMap<String, ICommand> systemCommands;
     private HashMap<State, HashMap<String, ICommand>> stateAllowedCommands;
 
-    CommandHandler(Conversation conversation) {
+    public CommandHandler(Conversation conversation) {
         systemCommands = new HashMap<>();
         stateAllowedCommands = new HashMap<>();
         ICommand[] commands = new ICommand[]{
@@ -37,7 +37,7 @@ class CommandHandler {
         }
     }
 
-    String tryHandleAsCommand(String message, State state) {
+    public String tryHandleAsCommand(String message, State state) {
 
         if (systemCommands.containsKey(message)) {
             return systemCommands.get(message).execute();

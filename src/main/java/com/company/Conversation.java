@@ -10,7 +10,7 @@ public class Conversation {
     private HashMap<String, String> topicContent; // Basic background information
     private HashMap<String, String> questionAnswer;
 
-    Conversation(HashMap<String, String> topicContent, HashMap<String, String> questionAnswer) {
+    public Conversation(HashMap<String, String> topicContent, HashMap<String, String> questionAnswer) {
         quiz = new Quiz(questionAnswer, topicContent, this);
         commandHandler = new CommandHandler(this);
         state = State.INITIAL;
@@ -19,7 +19,7 @@ public class Conversation {
     }
 
 
-    String handle(String message) {
+    public String handle(String message) {
         message = message.toLowerCase();
         String answer = null;
 
@@ -49,7 +49,7 @@ public class Conversation {
         state = State.QUIZ;
     }
 
-    String tryHandle(String message) {
+    public String tryHandle(String message) {
         return commandHandler.tryHandleAsCommand(message, state);
     }
 

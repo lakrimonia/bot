@@ -4,15 +4,13 @@ import java.util.Scanner;
 
 class Agent {
 
-	private Scanner scan;
+    private Scanner scan = new Scanner(System.in);
 
-	void sendBotAnswer(String message) {
-		System.out.println(message);
-	}
+    public void sendBotAnswer(String message) {
+        System.out.println(message);
+    }
 
-	String getUserRequest() {
-		//TODO А зачем каждый раз создается scanner?!
-    	scan = new Scanner(System.in);
-		return scan.nextLine();
-	}
+    public String getUserRequest() {
+        return scan.nextLine();
+    }
 }
