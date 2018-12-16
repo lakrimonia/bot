@@ -6,7 +6,7 @@ import org.apache.log4j.xml.DOMConfigurator;
 
 public class Main {
 
-    private static Logger rootLogger = Logger.getLogger(Main.class.getName());
+    private static Logger consoleLogger = Logger.getLogger("console");
     private static Agent agent = new Agent();
     private static Reader reader = new Reader();
     private static final String chatId = "000";
@@ -18,12 +18,11 @@ public class Main {
         while (true) {
             try {
                 String message = agent.getUserRequest();
-                String answer = bot.handleMessage(message, chatId);
+                String answer = bot.handleMessage(message, chatId); 
                 agent.sendBotAnswer(answer);
+                
             } catch (Exception e) {
-                rootLogger.log(Level.ERROR, "Exception:", e);
-                //TODO Может быть не пробрасывать исключение, а подключить Console аппендер, который будет выводить в err?
-                throw e;
+                consoleLogger.log(Level.ERROR, "Exception:", e);
             }
         }
     }
